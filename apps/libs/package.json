@@ -1,0 +1,24 @@
+{
+  "name": "@frontend-shared/libs",
+  "version": "1.0.0",
+  "description": "libs",
+  "type": "module",
+  "typings": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles/*": "./src/styles/*",
+    "./plugins/*": "./plugins/*"
+  },
+  "keywords": [
+    "app",
+    "libs"
+  ],
+  "author": "ysx",
+  "license": "ISC",
+  "peerDependencies": {
+    "antd": "^5.22.1",
+    "antd-mobile": "^5.38.1",
+    "dayjs": "^1.11.13",
+    "react": "^19.0.0"
+  }
+}

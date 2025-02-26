@@ -1,0 +1,63 @@
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.image {
+  display: inline-block;
+  width: 100%;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  column-gap: var(--gap-1);
+}
+
+.btn-group.center {
+  justify-content: center;
+}
+
+.btn-group.center.full .btn {
+  flex: 1;
+  font-size: var(--text-size-2);
+}
+
+.cell-actions {
+  display: flex;
+  column-gap: var(--gap-4);
+}
+
+.ellipsis {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.none {
+  display: none;
+}
+
+.inline-auto {
+  margin-inline: auto;
+}
+
+.select-no-pop {
+  display: none;
+}
+
+.highlight.red {
+  color: var(--zs-red-2);
+}
+
+.text:empty::after {
+  content: "--";
+  font-weight: var(--text-bold-400);
+}

@@ -1,0 +1,25 @@
+.zs-input.ant-input-borderless,
+.zs-input.ant-input-affix-wrapper-borderless {
+  border-bottom: 1px solid var(--zs-grey-7);
+  transition: border-color 0.3s;
+
+  &:not(
+      .ant-input-disabled,
+      .ant-input-status-error,
+      .ant-input-status-warning
+    ) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      border-bottom-color: var(--zs-blue-10);
+    }
+  }
+}
+
+.zs-input.ant-input-borderless.ant-input-status-error {
+  border-bottom-color: var(--zs-red-2);
+}
+
+.zs-input.ant-input-borderless.ant-input-status-warning {
+  border-bottom-color: var(--zs-yellow-2);
+}

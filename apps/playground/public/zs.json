@@ -1,0 +1,17 @@
+{
+	"prefix": "zs",
+	"lastModified": 1740560703,
+	"icons": {
+		"search": {
+			"body": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M11.122 2.636a6 6 0 11-8.486 8.485 6 6 0 018.485-8.485M9.706 4.05A4 4 0 114.05 9.707 4 4 0 019.707 4.05\" clip-rule=\"evenodd\"/><path d=\"M12.535 12.536q.479-.479.858-1.012l2.324 3.487-.707.707-3.486-2.324q.533-.381 1.011-.858\"/></g>"
+		},
+		"shopping": {
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"square\" stroke-width=\"2\" d=\"M1 6h1.167l.5 2m0 0 1.666 6.667H13L14.667 8zm1.665 11a1 1 0 100-2 1 1 0 000 2ZM13 19a1 1 0 100-2 1 1 0 000 2Z\"/>",
+			"width": 22,
+			"height": 20
+		},
+		"user": {
+			"body": "<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M8 7a2 2 0 100-4 2 2 0 000 4m0 2a4 4 0 100-8 4 4 0 000 8m4 6.999a4 4 0 00-8 0H2a6 6 0 0112 0z\" clip-rule=\"evenodd\"/>"
+		}
+	}
+}

@@ -1,0 +1,51 @@
+/* https://designsystem.zeiss.com/d/V6diyrWaeh1V/foundations#/color/color-palette */
+:root {
+  --zs-grey-1: #fff;
+  --zs-grey-1-rgb: 255 255 255;
+  --zs-grey-2: #f8fafc;
+  --zs-grey-3: #f2f5f8; /* 浅 */
+  --zs-grey-4: #ecf0f4;
+  --zs-grey-5: #e6ebf0;
+  --zs-grey-6: #dce3e9;
+  --zs-grey-7: #c2cdd6;
+  --zs-grey-8: #a4b0bc;
+  --zs-grey-9: #6c7784;
+  --zs-grey-10: #606a76;
+  --zs-grey-11: #4e565f;
+  --zs-grey-12: #32373e;
+  --zs-grey-13: #000;
+  --zs-blue-1: #eaf7ff;
+  --zs-blue-2: #d5eeff;
+  --zs-blue-3: #b1e0ff;
+  --zs-blue-4: #99d6ff;
+  --zs-blue-5: #7dc7ff;
+  --zs-blue-6: #5db3ff;
+  --zs-blue-7: #3396ff;
+  --zs-blue-8: #1a88ff;
+  --zs-blue-9: #008bd0;
+  --zs-blue-10: #0072ef; /* primary */
+  --zs-blue-10-rgb: 0 114 239;
+  --zs-blue-11: #0052aa;
+  --zs-blue-12: #00346c;
+  --zs-blue-13: #002144;
+  --zs-red-1: #fdf0f0;
+  --zs-red-2: #ed4f4f; /* primary */
+  --zs-red-3: #e71e1e;
+  --zs-red-4: #500808;
+  --zs-yellow-1: #fff4d5;
+  --zs-yellow-2: #fdca3f; /* primary */
+  --zs-yellow-3: #986f00;
+  --zs-yellow-4: #302300;
+  --zs-orange-1: #fdf1ec;
+  --zs-orange-2: #ec6e38; /* primary */
+  --zs-orange-3: #cd4b13;
+  --zs-orange-4: #3e1706;
+  --zs-green-1: #e5f9f3;
+  --zs-green-2: #3ad2a3; /* primary */
+  --zs-green-3: #1e8565;
+  --zs-green-4: #09271e;
+
+  /* extra ?? */
+  --zs-info: #0f2db3;
+  --zs-info-hilight: #d9e906;
+}

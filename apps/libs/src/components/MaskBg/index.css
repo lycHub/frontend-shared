@@ -1,0 +1,12 @@
+.mask-bg {
+  position: absolute;
+  background-color: rgb(var(--zs-grey-1-rgb) / 50%);
+  inset: 0;
+  backdrop-filter: blur(2px);
+}
+
+.mask-bg.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,43 @@
+:root {
+  color-scheme: auto;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--global-font-family);
+  font-size: var(--text-size-2);
+  color: var(--zs-grey-12);
+  font-weight: var(--text-bold-400);
+  background-color: var(--zs-grey-2);
+  line-height: var(--line-height-3);
+
+  /* 禁用自带的下拉刷新，微信内嵌浏览器似乎没这个行为 */
+
+  /* overscroll-behavior-y: contain; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* padding:
+      env(safe-area-inset-top)
+      env(safe-area-inset-right)
+      env(safe-area-inset-bottom)
+      env(safe-area-inset-left); */
+}
+
+/* @supports not(constant(safe-area-inset-bottom)){
+    body{
+      padding-bottom: 20px;
+    }
+  } */
+
+/* a {
+  color: var(--zs-blue-10);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+} */

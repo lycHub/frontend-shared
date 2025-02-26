@@ -1,0 +1,24 @@
+.zs-input.ant-input-number-borderless {
+  border-bottom: 1px solid var(--zs-grey-7);
+  transition: border-color 0.3s;
+
+  &:not(
+      .ant-input-number-disabled,
+      .ant-input-number-status-error,
+      .ant-input-number-status-warning
+    ) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      border-bottom-color: var(--zs-blue-10);
+    }
+  }
+}
+
+.zs-input.ant-input-number-borderless.ant-input-number-status-error {
+  border-bottom-color: var(--zs-red-2);
+}
+
+.zs-input.ant-input-number-borderless.ant-input-number-status-warning {
+  border-bottom-color: var(--zs-yellow-2);
+}

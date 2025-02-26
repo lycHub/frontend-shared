@@ -1,0 +1,40 @@
+.zs-picker.ant-picker-borderless {
+  border-bottom: 1px solid var(--zs-grey-7) !important;
+  transition: border-color 0.3s;
+
+  &:not(
+      .ant-picker-disabled,
+      .ant-picker-status-error,
+      .ant-picker-status-warning
+    ) {
+    &:hover,
+    &:focus {
+      border-bottom-color: var(--zs-blue-10) !important;
+
+      & .ant-picker-suffix {
+        color: var(--zs-blue-10);
+      }
+    }
+  }
+
+  & .ant-picker-suffix {
+    color: var(--zs-grey-7);
+    transition: border-color 0.3s;
+  }
+}
+
+.zs-picker.ant-picker-status-error {
+  border-bottom-color: var(--zs-red-2) !important;
+
+  & .ant-picker-suffix {
+    color: var(--zs-red-2);
+  }
+}
+
+.zs-picker.ant-picker-status-warning {
+  border-bottom-color: var(--zs-yellow-2) !important;
+
+  & .ant-picker-suffix {
+    color: var(--zs-yellow-2);
+  }
+}

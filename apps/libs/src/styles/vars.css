@@ -1,0 +1,63 @@
+:root {
+  --global-font-family: system-ui;
+  --text-bold-400: normal;
+  --text-bold-600: 600;
+  --text-bold-700: bold;
+  --text-size-1: 12px;
+  --text-size-2: 14px;
+  --text-size-3: 16px;
+  --text-size-4: 18px;
+  --text-size-5: 20px;
+  --text-size-6: 22px;
+  --text-size-7: 24px;
+  --text-size-8: 26px;
+  --gap-0: 0;
+  --gap-1: 2px;
+  --gap-2: 4px;
+  --gap-3: 6px;
+  --gap-4: 8px;
+  --gap-5: 10px;
+  --gap-6: 12px;
+  --gap-7: 14px;
+  --gap-8: 16px;
+  --gap-9: 18px;
+  --gap-10: 20px;
+  --gap-11: 22px;
+  --gap-12: 24px;
+  --gap-13: 26px;
+  --gap-14: 28px;
+  --gap-15: 30px;
+  --gap-16: 32px;
+  --gap-17: 34px;
+  --b-radius-0: 0;
+  --b-radius-1: 2px;
+  --b-radius-2: 4px;
+  --b-radius-3: 6px;
+  --b-radius-4: 8px;
+  --b-radius-5: 10px;
+
+  /* 
+    默认等于当前fontSize, 比如body.fontSize = 14px = line-height: 1;
+    浏览器默认是1rem, 也就是16px
+  */
+  --line-height-2: 1;
+  --line-height-3: 1.5;
+  --line-height-4: 2;
+  --border-radius-1: 2px;
+  --border-radius-2: 4px;
+  --border-radius-3: 6px;
+  --border-radius-4: 8px;
+  --border-radius-5: 10px;
+  --card-shadow: 0px 4px 16px rgb(25 25 25 / 16%);
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1560px;
+  --ts-duration-quick: 100ms;
+  --ts-duration-normal: 300ms;
+  --ts-duration-middle: 600ms;
+  --ts-duration-slow: 800ms;
+  --ts-timing-function: ease-in-out;
+}
