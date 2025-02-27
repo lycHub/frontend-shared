@@ -1,14 +1,17 @@
 {
 	"prefix": "zs",
-	"lastModified": 1740624750,
+	"lastModified": 1740638194,
 	"icons": {
+		"new1": {
+			"body": "<path fill=\"currentColor\" d=\"M18.172 7H11a6 6 0 000 12h9v2h-9a8 8 0 010-16h7.172l-2.536-2.536L17.05 1.05 22 6l-4.95 4.95-1.414-1.415z\"/>"
+		},
 		"pavilion-fill": {
-			"body": "<path fill=\"currentColor\" d=\"M1.516 7.877A4.5 4.5 0 005 11.887v7.114H3v2h18v-2h-2v-7.114a4.5 4.5 0 003.484-4.01A9 9 0 0112.514 2h-1.029a9 9 0 01-9.97 5.877M17 19H7v-7h10z\"/>",
-			"width": 24,
-			"height": 24
+			"body": "<path fill=\"currentColor\" d=\"M1.516 7.877A4.5 4.5 0 005 11.887v7.114H3v2h18v-2h-2v-7.114a4.5 4.5 0 003.484-4.01A9 9 0 0112.514 2h-1.029a9 9 0 01-9.97 5.877M17 19H7v-7h10z\"/>"
 		},
 		"search": {
-			"body": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M11.122 2.636a6 6 0 11-8.486 8.485 6 6 0 018.485-8.485M9.706 4.05A4 4 0 114.05 9.707 4 4 0 019.707 4.05\" clip-rule=\"evenodd\"/><path d=\"M12.535 12.536q.479-.479.858-1.012l2.324 3.487-.707.707-3.486-2.324q.533-.381 1.011-.858\"/></g>"
+			"body": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M11.122 2.636a6 6 0 11-8.486 8.485 6 6 0 018.485-8.485M9.706 4.05A4 4 0 114.05 9.707 4 4 0 019.707 4.05\" clip-rule=\"evenodd\"/><path d=\"M12.535 12.536q.479-.479.858-1.012l2.324 3.487-.707.707-3.486-2.324q.533-.381 1.011-.858\"/></g>",
+			"width": 16,
+			"height": 16
 		},
 		"shopping": {
 			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"square\" stroke-width=\"2\" d=\"M1 6h1.167l.5 2m0 0 1.666 6.667H13L14.667 8zm1.665 11a1 1 0 100-2 1 1 0 000 2ZM13 19a1 1 0 100-2 1 1 0 000 2Z\"/>",
@@ -16,7 +19,11 @@
 			"height": 20
 		},
 		"user": {
-			"body": "<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M8 7a2 2 0 100-4 2 2 0 000 4m0 2a4 4 0 100-8 4 4 0 000 8m4 6.999a4 4 0 00-8 0H2a6 6 0 0112 0z\" clip-rule=\"evenodd\"/>"
+			"body": "<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M8 7a2 2 0 100-4 2 2 0 000 4m0 2a4 4 0 100-8 4 4 0 000 8m4 6.999a4 4 0 00-8 0H2a6 6 0 0112 0z\" clip-rule=\"evenodd\"/>",
+			"width": 16,
+			"height": 16
 		}
-	}
+	},
+	"width": 24,
+	"height": 24
 }

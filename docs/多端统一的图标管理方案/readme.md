@@ -12,6 +12,15 @@
  - 图标目录复用： 多端可复用同一目录的图标，甚至可以跨项目引用同一图标库；
  - 极简的管理方式：只需在一个目录添加一个svg文件，无需额外配置即可在n个项目中直接使用。
 
+
+> tips:
+> 
+> node: v20+
+>
+> 最终代码在 `main` 分支，
+> 
+> 前面基础示例在 `iconify-base` 分支
+
 ## 痛点：图标开发管理的混乱
 
 **1. 使用方式非常多**
@@ -592,5 +601,41 @@ node copy
 3. 随着图标越来越多，json和css也会越来越大，能否按需加载？
   
 
-下面实现第一条，后面两条不做演示。
 
+第二条做法同第一条。
+
+第三条只需把icon-data.json中的icons字段拆开就行。
+
+
+### 下面只实现第一条
+
+**添加一个watch.js和script:**
+
+![](./assets/watch.png)
+
+```sh
+  // 监听svgs变化，自动刷新icon.css和icon-data.json
+  npm run dev
+```
+
+
+所以如果项目需要频繁变动svg文件，
+只需多跑一个 `npm run dev` 即可。
+
+## 运行最终代码
+
+运行main分支代码：
+
+```sh
+pnpm i
+
+pnpm dev:icons
+
+pnpm dev:play
+```
+
+实际项目可视情况用 `concurrently` 合并 pnpm dev:icons 和 pnpm dev:play
+
+```sh
+"concurrently \"pnpm dev:icons\" \"pnpm dev:play\"",
+```

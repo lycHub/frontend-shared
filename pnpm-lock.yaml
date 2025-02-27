@@ -23,6 +23,9 @@ importers:
       '@iconify/utils':
         specifier: ^2.3.0
         version: 2.3.0
+      chokidar:
+        specifier: ^4.0.3
+        version: 4.0.3
       concurrently:
         specifier: ^9.1.2
         version: 9.1.2
