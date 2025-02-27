@@ -1,7 +1,12 @@
 {
 	"prefix": "zs",
-	"lastModified": 1740560703,
+	"lastModified": 1740619933,
 	"icons": {
+		"pavilion-fill": {
+			"body": "<path fill=\"currentColor\" d=\"M1.516 7.877A4.5 4.5 0 005 11.887v7.114H3v2h18v-2h-2v-7.114a4.5 4.5 0 003.484-4.01A9 9 0 0112.514 2h-1.029a9 9 0 01-9.97 5.877M17 19H7v-7h10z\"/>",
+			"width": 24,
+			"height": 24
+		},
 		"search": {
 			"body": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M11.122 2.636a6 6 0 11-8.486 8.485 6 6 0 018.485-8.485M9.706 4.05A4 4 0 114.05 9.707 4 4 0 019.707 4.05\" clip-rule=\"evenodd\"/><path d=\"M12.535 12.536q.479-.479.858-1.012l2.324 3.487-.707.707-3.486-2.324q.533-.381 1.011-.858\"/></g>"
 		},

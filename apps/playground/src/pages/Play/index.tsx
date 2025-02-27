@@ -15,6 +15,7 @@ function Play() {
       <Icon icon="zs:search" style={{ color: "blue" }} />
       <Icon icon="zs:shopping" style={{ color: "red" }} />
       <Icon icon="zs:user" style={{ color: "yellow", fontSize: "24px" }} />
+      <Icon icon="zs:pavilion-fill" style={{ color: "#f60" }} />
     </div>
   );
 }

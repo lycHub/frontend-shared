@@ -26,11 +26,14 @@
 
 
 **2. 多种图标来源**
+
 	- 在线平台比如iconfont, iconify等;
 	- 设计稿直接下载.
 
 **3. 多项目可复用性**
+
 	很多项目都有pc和mobile端，甚至小程序，它们往往都是同一套ui风格，图标也几乎是从同一份设计稿下载的，
+
 	但日常开发中同样的图标文件往往只能通过cv的方式粘到各个端的项目中，造成维护成本翻倍，占磁盘空间。
 
 ## font-class和svg的局限
@@ -253,10 +256,165 @@ axios.get('/public/zs.json').then(({ data }) => {
 
 ![](./assets/view.png)
 
+
+## 写个vite插件优化流程
+
+虽然可以使用本地图标，但每次修改svg目录，还是得跑一下iconify.js, 可用node监听svg目录变化自动run iconify.js.
+
+建议参考项目使用的cli,这里以vite为例写个插件：
+
+vite-plugin-iconify.js
+```js
+import { join, dirname, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
+import { promises as fs } from "fs";
+import {
+  importDirectory,
+  cleanupSVG,
+  runSVGO,
+  parseColors,
+  isEmptyColor,
+} from "@iconify/tools";
+
+export function getDirname() {
+  const filename = fileURLToPath(import.meta.url);
+  return dirname(filename);
+}
+
+const DefaultOptions = {
+  sourcePath: "/public/svgs",
+  destPath: "/public/zs.json",
+};
+
+export default (options = {}) => {
+  const finalOptions = { ...DefaultOptions, ...options };
+  let root = getDirname();
+  return {
+    name: "vite-plugin-iconify",
+    apply: "serve",
+    configResolved(config) {
+      console.log("configResolved>>>", config.root);
+      root = config.root;
+    },
+    configureServer(server) {
+      return () => {
+        // server.watcher.add(join(root, finalOptions.sourcePath));
+        server.watcher.on("add", (path) => {
+          // console.log(`File add: ${path} `);
+          refreshIconJson({
+            root,
+            changedFilePath: path,
+            ...finalOptions,
+          }).then(() => {
+            console.log(`${finalOptions.destPath} refreshed`);
+          });
+        });
+        server.watcher.on("unlink", (path) => {
+          // console.log(`File unlink: ${path} `);
+          refreshIconJson({
+            root,
+            changedFilePath: path,
+            ...finalOptions,
+          }).then(() => {
+            console.log(`${finalOptions.destPath} refreshed`);
+          });
+        });
+        server.watcher.on("change", (path) => {
+          // console.log(`File changed 2: ${path} `);
+          refreshIconJson({
+            root,
+            changedFilePath: path,
+            ...finalOptions,
+          }).then(() => {
+            console.log(`${finalOptions.destPath} refreshed`);
+          });
+        });
+      };
+    },
+  };
+};
+
+async function refreshIconJson({
+  root,
+  changedFilePath,
+  sourcePath,
+  destPath,
+}) {
+  if (!normalize(changedFilePath).includes(normalize(sourcePath))) return;
+  const iconSet = await importDirectory(join(root, sourcePath), {
+    prefix: "zs",
+    ignoreImportErrors: false,
+  });
+
+  iconSet.forEach((name, type) => {
+    if (type !== "icon") {
+      return;
+    }
+
+    const svg = iconSet.toSVG(name);
+    if (!svg) {
+      iconSet.remove(name);
+      return;
+    }
+
+    try {
+      cleanupSVG(svg);
+
+      parseColors(svg, {
+        defaultColor: "currentColor",
+        callback: (attr, colorStr, color) => {
+          if (!color) {
+            return colorStr;
+          }
+
+          if (isEmptyColor(color)) {
+            return color;
+          }
+          return "currentColor";
+        },
+      });
+
+      runSVGO(svg);
+    } catch (err) {
+      console.error(`Error parsing ${name}:`, err);
+      iconSet.remove(name);
+      return;
+    }
+
+    // Update icon
+    iconSet.fromSVG(name, svg);
+  });
+
+  // Export as IconifyJSON
+  const exported = JSON.stringify(iconSet.export(), null, "\t") + "\n";
+
+  // Save to file
+  await fs.writeFile(join(root, destPath), exported, "utf8");
+}
+
+```
+
+
+vite.config.js
+```js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import iconify from "./vite-plugin-iconify";
+
+export default defineConfig({
+    envDir: "envs",
+    cacheDir: "../../node_modules/.vite",
+    plugins: [react(), iconify()],
+  });
+```
+
 配置好后，只需要在svg目录修改图标就能直接用了，比svgr还方便一点，但这点可以忽略不记，
 
-关键是小程序不能这样直接用svg，这就导致小程序得换其它方案，下面介绍iconify在小程序的使用。
+关键是svgr不能用在小程序，这就导致小程序得换其它方案，但iconify支持font-class的用法，能在小程序使用。
 
 
 ## 用于微信小程序
+
+这里以原生微信小程序为例。
+
 
