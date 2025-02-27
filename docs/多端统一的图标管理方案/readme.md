@@ -8,9 +8,9 @@
 # 多端统一的图标管理方案
 
 > 本文目标：
- - 多端(pc, mobile,小程序)统一图标技术栈；
- - 多端可复用同一目录的图标，甚至可以跨项目引用同一图标库；
- - 极简的图标添加和使用方式。
+ - 多端统一技术栈：pc, mobile,小程序等使用同一个icon解决方案；
+ - 图标目录复用： 多端可复用同一目录的图标，甚至可以跨项目引用同一图标库；
+ - 极简的管理方式：只需在一个目录添加一个svg文件，无需额外配置即可在n个项目中直接使用。
 
 ## 痛点：图标开发管理的混乱
 
@@ -417,4 +417,107 @@ export default defineConfig({
 
 这里以原生微信小程序为例。
 
+首先添加资源目录，放几个svg进去
+
+![](./assets/mini-svgs.png)
+
+因为是font-class的用法，所以得先给这些图标生成css，和上面类似这里新建一个脚本：
+
+iconify.js
+```js
+import { writeFileSync } from "node:fs";
+import { getIconCSS } from "@iconify/utils";
+import {
+  importDirectory,
+  cleanupSVG,
+  runSVGO,
+  parseColors,
+  isEmptyColor,
+} from "@iconify/tools";
+
+const svgPath = "miniprogram/public/svgs";
+const destPath = "miniprogram/icon.css";
+const ignoreNames = ["logo"];
+
+(async () => {
+  const iconSet = await importDirectory(svgPath, {
+    prefix: "zs",
+    ignoreImportErrors: false,
+  });
+
+  let cssStr = "";
+  iconSet.forEach((name, type) => {
+    if (type !== "icon" || ignoreNames.includes(name)) return;
+
+    const svg = iconSet.toSVG(name);
+    if (!svg) {
+      // Invalid icon
+      iconSet.remove(name);
+      return;
+    }
+
+    try {
+      cleanupSVG(svg);
+      parseColors(svg, {
+        defaultColor: "currentColor",
+        callback: (attr, colorStr, color) => {
+          if (!color) {
+            return colorStr;
+          }
+
+          if (isEmptyColor(color)) {
+            return color;
+          }
+          return "currentColor";
+        },
+      });
+
+      // Optimise
+      runSVGO(svg);
+    } catch (err) {
+      // Invalid icon
+      console.error(`ICON Error parsing ${name}:`, err);
+      iconSet.remove(name);
+      return;
+    }
+
+    const iconData = svg.getIcon();
+    cssStr +=
+      getIconCSS(iconData, {
+        iconSelector: ".zs-icon__" + name,
+      }) + "\n";
+  });
+
+  writeFileSync(destPath, cssStr, "utf8");
+  // todo: watch svgPath by chokidar
+})();
+```
+
+```sh
+node iconify.js
+```
+
+然后就会生成icon.css, 导入到全局的app.scss中去
+
+![](./assets/iconcss.png)
+
+然后在wxml中使用
+
+![](./assets/use-wxml.png)
+
+这样web和小程序端都能统一用iconify管理和开发图标，
+
+小程序也能像web端一样监听svg目录变化，自动执行脚本，如果用了taro这种框架，可以写个webpack插件，原生也可以用nodejs监听。
+
+小程序端的监听等会在做，现在还需要解决svg目录复用问题。
+
+## 多端复用svg文件
+
+到目前为止，iconify已经可以同时用于web和小程序，但可以看到，用一个svg目录，却要复制两份分别放到web端和小程序端的静态目录里，这还只是两个项目，如果这仓库有多个子项目，svg目录体积将成倍增长，而且跨项目也无法复用。
+
+下面开始改造目录结构，让多项目可从统一图标库复用图标，**当前基础示例的代码暂存在 `iconify-base` 分支**
+
+### 思路
+
+利用monorepo的方式，单独创建一个图标库，暴露出web和小程序端使用到的iconData.json和icon.css, 并写一个node监听脚本，达到自动化。
 

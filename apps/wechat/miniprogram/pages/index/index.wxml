@@ -1,0 +1,8 @@
+<!-- index.wxml -->
+<navigation-bar title="Weixin" back="{{false}}" color="#fff" background="#f60"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list" style="font-size: 30px;">
+  <navigator url="/pages/logs/logs" hover-class="navigator-hover">跳转到Logs</navigator>
+  <view class="zs-icon__search"></view>
+  <view class="zs-icon__shopping"></view>
+  <view class="zs-icon__user" style="color: #e00;"></view>
+</scroll-view>
