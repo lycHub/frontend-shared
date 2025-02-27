@@ -4,7 +4,7 @@
   "description": "miniprogram",
   "type": "module",
   "scripts": {
-    "icon:css": "node icon"
+    "copy:css": "node copy"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,9 @@
   "devDependencies": {
     "@iconify/tools": "^4.1.1",
     "@iconify/utils": "^2.3.0",
-    "miniprogram-api-typings": "^2.8.3-1"
+    "miniprogram-api-typings": "^4.0.5"
+  },
+  "dependencies": {
+    "@frontend-shared/icons": "workspace:^"
   }
 }

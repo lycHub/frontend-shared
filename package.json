@@ -4,7 +4,8 @@
   "description": "frontend knowledge shared",
   "main": "index.js",
   "scripts": {
-    "dev:playground": "pnpm -F=@frontend-shared/playground dev"
+    "dev:playground": "pnpm -F=@frontend-shared/playground dev",
+    "build:icon": "pnpm -F=@frontend-shared/icons build"
   },
   "keywords": [
     "frontend",

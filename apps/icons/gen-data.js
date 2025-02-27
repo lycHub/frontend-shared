@@ -15,8 +15,8 @@ export function getDirname() {
 }
 
 const DefaultOptions = {
-  sourcePath: "/public/svgs",
-  destPath: "/public/zs.json",
+  sourcePath: "/svgs",
+  destPath: "/icon-data.json",
 };
 
 genIconJson();

@@ -7,10 +7,10 @@
     "dev": "tsc && vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "gen:icon": "node iconify"
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@frontend-shared/icons": "workspace:^",
     "@frontend-shared/libs": "workspace:^",
     "@iconify-icon/react": "^2.3.0",
     "@iconify/tools": "^4.1.1",

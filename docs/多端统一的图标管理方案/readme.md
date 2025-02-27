@@ -521,3 +521,76 @@ node iconify.js
 
 利用monorepo的方式，单独创建一个图标库，暴露出web和小程序端使用到的iconData.json和icon.css, 并写一个node监听脚本，达到自动化。
 
+#### 创建图标库项目
+
+在库中先node build生成icon-data.json和icon.css，然后导出：
+
+![](./assets/gen-icons.png)
+
+#### 复用build出来的文件(json、css)
+
+  1. 部署到远程(推荐)：这样只要远程跟新了，其它项目通过http请求就能直接更新；
+  2. 本地通过monorepo的方式引用：不能垮项目；
+  3. 把icons项目发布到npm: 更新麻烦。
+
+下面演示第2种方式。
+
+在web端引用：
+
+![](./assets/use-in-web.png)
+
+如果远程部署了仍然可以通过http请求。
+
+在小程序引用：
+
+如果用了taro之类的，引用方式类似web端，
+
+但原生小程序小程序 `app.scss` 没法直接从monorepo中引入css,
+
+这里需要一个额外的脚本: 
+
+在wechat项目根目录新建copy.js:
+
+```js
+import { copyFile } from "node:fs/promises";
+
+try {
+  await copyFile("../icons/icon.css", "./miniprogram/icon.css");
+  console.log("copy icon.css success");
+} catch (error) {
+  console.error("The icon.css could not be copied", error);
+}
+
+```
+
+```sh
+node copy
+```
+
+这样就将icon.css复制到小程序里了，然后引入并使用：
+
+![](./assets/use-in-mini.png)
+
+
+
+## 小结
+
+现在web端和小程序端，甚至更多的端比如管理系统，或其他子项目，
+
+都可以从同一个icons库复用图标
+
+1. 统一了多端技术栈 —— iconify.js；
+2. 多项目复用同一个图标库；
+3. 把icon一次下载好后，运行一次脚本，所有web和taro等项目即可使用，原生小程序得多跑一次脚本。
+
+## 更进一步
+
+流程上还有些可优化的点：
+
+1. 监听icons/svgs目录，每次svgs变化自动刷新json和css（如果需要频繁的更新icons里的svg文件）;
+2. 原生小程序视情况也可以改成监听脚本；
+3. 随着图标越来越多，json和css也会越来越大，能否按需加载？
+  
+
+下面实现第一条，后面两条不做演示。
+

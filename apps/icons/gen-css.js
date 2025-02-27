@@ -8,9 +8,8 @@ import {
   isEmptyColor,
 } from "@iconify/tools";
 
-const svgPath = "miniprogram/public/svgs";
-const destPath = "miniprogram/icon.css";
-const ignoreNames = ["logo"];
+const svgPath = "./svgs";
+const destPath = "./icon.css";
 
 (async () => {
   const iconSet = await importDirectory(svgPath, {
@@ -20,7 +19,7 @@ const ignoreNames = ["logo"];
 
   let cssStr = "";
   iconSet.forEach((name, type) => {
-    if (type !== "icon" || ignoreNames.includes(name)) return;
+    if (type !== "icon") return;
 
     const svg = iconSet.toSVG(name);
     if (!svg) {
