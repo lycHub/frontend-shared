@@ -22,6 +22,8 @@
 > 
 > 前面基础示例在 <a href="https://github.com/lycHub/frontend-shared/tree/iconify-base" target="_blank">iconify-base</a> 分支
 
+## <a href="https://stackblitz.com/~/github.com/lycHub/frontend-shared" target="_blank">在线Demo</a>
+
 ## 痛点：图标开发管理的混乱
 
 **1. 使用方式非常多**
