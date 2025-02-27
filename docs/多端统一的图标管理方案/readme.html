@@ -1,0 +1,503 @@
+<p><strong>目录 (Table of Contents)</strong></p>
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<h1>多端统一的图标管理方案</h1>
+<blockquote>
+<p><strong>本文目标：创建一个icons库，且具有一下特性：</strong></p>
+</blockquote>
+<ul>
+<li>多端统一技术栈：pc, mobile,小程序等使用同一个icon解决方案；</li>
+<li>图标目录复用： 多端可复用同一icons库的图标，甚至可以跨项目引用同一icons库；</li>
+<li>极简的管理方式：只需在icons目录增删改svg文件，无需额外配置即可在n个项目中直接使用。</li>
+</ul>
+<blockquote>
+<p>tips:</p>
+<p>node: v20+</p>
+<p>最终代码在 <a href="https://github.com/lycHub/frontend-shared/tree/iconify-base/docs/%E5%A4%9A%E7%AB%AF%E7%BB%9F%E4%B8%80%E7%9A%84%E5%9B%BE%E6%A0%87%E7%AE%A1%E7%90%86%E6%96%B9%E6%A1%88" target="_blank">main</a> 分支，</p>
+<p>前面基础示例在 <a href="https://github.com/lycHub/frontend-shared/tree/iconify-base" target="_blank">iconify-base</a> 分支</p>
+</blockquote>
+<h2>痛点：图标开发管理的混乱</h2>
+<p><strong>1. 使用方式非常多</strong></p>
+<pre><code>前端开发中，使用图标的方式非常多，传统的有使用图片、Svg，从字体图标（Icon Fonts）等。基于框架又有很多不同封装，可以自己封装&lt;Icon /&gt;组件，也可用第三方库比如svgr。并且每种使用方式也有多种。
+
+比如图片可以用`&lt;img /&gt;`标签，也可以css url()；
+
+字体图标可以用 unicode `&lt;i class=&quot;iconfont&quot;&gt;&amp;#x33;&lt;/i&gt;` 或 font-class的方式 `&lt;i class=&quot;iconfont icon-xxx&quot;&gt;&lt;/i&gt;`;
+
+svg可以直接使用`&lt;svg /&gt;`标签，也可以图片标签加载`&lt;img src=&quot;menu.svg&quot; /&gt;`, css url也可以加载svg.
+</code></pre>
+<p><strong>2. 多种图标来源</strong></p>
+<pre><code>- 在线平台比如iconfont, iconify等;
+- 设计稿直接下载.
+</code></pre>
+<p><strong>3. 多项目可复用性</strong></p>
+<pre><code>很多项目都有pc和mobile端，甚至小程序，它们往往都是同一套ui风格，图标也几乎是从同一份设计稿下载的，
+
+但日常开发中同样的图标文件往往只能通过cv的方式粘到各个端的项目中，造成维护成本翻倍，占磁盘空间。
+</code></pre>
+<h2>font-class和svg的局限</h2>
+<p>尽管上述有那么多使用图标的方式，但实际开发大多是使用svg和font-class的方式， 因为他们都可以直接通过css来改变尺寸和颜色，这种便利性是其它方案难以做到的，但这两种方式仍有一些局限性。</p>
+<pre><code> svg: 只有svg标签的方式能做到用css改变颜色和尺寸，但直接写svg标签会降低html的可读性，所以每种技术栈都有各自的库来简化svg的使用比如react的svgr, 原生的web component, 这在web端很方便但其它不支持svg标签的端呢？(各种小程序)。
+ font-class: 这是唯一能同时在web和小程序使用的方式，并且可以通过css改变图标属性，但它缺点也很多，比如要加载额外的字体文件，高分辨率下会模糊，不能用js控制内部细节，比如图标的路径动画？
+</code></pre>
+<h2>确定方案</h2>
+<pre><code>由于svg能精细的控制内部path，方便做path动画，并且不会失真，所以web端还是用svg做图标是目前最合适的方案；
+小程序为了能让css改变图标，只有font-class的方式是最合适的
+</code></pre>
+<p>传统的做法是web端项目用svg的封装库，比如svgr，小程序端用iconfont的font-class方案，</p>
+<p>今天介绍的就是能统一web和小程序技术栈的图标库 —— <a href="https://iconify.design/" target="_blank">Iconify</a></p>
+<p>以及多端多项目如何引用同一个图标目录。</p>
+<h2><a href="https://iconify.design/" target="_blank">Iconify</a> 简介</h2>
+<p>引用官网原文： Iconify是一套面向开发人员和设计师的工具，旨在以一致的方式轻松使用不同的图标集。</p>
+<h3>features</h3>
+<ul>
+<li>官方自带20多万个图标，都经过清理、优化和更新；</li>
+<li>提供很多优化和操作图标的工具函数，比如图标优化，导入导出等；</li>
+<li>官方封装了各技术栈对应的图标组件；</li>
+<li>多场景可用：html, css, svg，figma等...</li>
+</ul>
+<h2>基本使用</h2>
+<blockquote>
+<p>代码都以react项目为例。</p>
+</blockquote>
+<p>根据不同使用场景选择对应的方式：</p>
+<p><img src="./assets/multi-use.png" alt=""></p>
+<p>web开发建议使用web component的方式，这样可以不限技术栈。</p>
+<p>而web component官方也提供了一个react的封装包<a href="https://iconify.design/docs/iconify-icon/react.html">@iconify-icon/react</a>，</p>
+<p>和<a href="https://iconify.design/docs/icon-components/react/">@iconify/react</a>不同，前者只是以react的方式封装了一下web component组件，后者完全是react的实现方式。</p>
+<p><strong>安装</strong></p>
+<pre><code class="language-sh">npm add @iconify-icon/react
+</code></pre>
+<p><strong>找到官方图标</strong></p>
+<p>在<a href="https://icon-sets.iconify.design/">官方图标库</a>选择一个图标.</p>
+<p><img src="./assets/use.png" alt=""></p>
+<p><strong>引入并使用</strong></p>
+<pre><code class="language-tsx">import { Icon } from &quot;@iconify-icon/react&quot;;
+
+function Page() {
+
+  return (
+    &lt;div className=&quot;page&quot;&gt;
+      &lt;Icon icon=&quot;ri:armchair-fill&quot; /&gt;
+      &lt;div&gt;
+  );
+}
+</code></pre>
+<p>页面上应该有了一个沙发的图标：</p>
+<p><img src="./assets/preview.png" alt=""></p>
+<p>用到那个图标，就是去加载对应的json文件。</p>
+<p><strong>改变属性</strong></p>
+<p>可以方便的用css或自带的一些属性改变图标样式</p>
+<pre><code class="language-tsx"> &lt;Icon icon=&quot;ri:armchair-fill&quot; /&gt;
+      &lt;Icon icon=&quot;ri:armchair-fill&quot; style={{ color: &#39;#e00&#39; }} /&gt;
+      &lt;Icon icon=&quot;ri:armchair-fill&quot; style={{ color: &#39;#e00&#39;, fontSize: &#39;2em&#39; }} /&gt;
+      &lt;Icon icon=&quot;ri:armchair-fill&quot; style={{ color: &#39;#e00&#39;, fontSize: &#39;2em&#39; }} rotate={45} /&gt;
+</code></pre>
+<p><img src="./assets/preview2.png" alt=""></p>
+<p>官方图标可很好的满足没有ui设计的公司或项目，怕请求失败的话也可把官方库私有化部署。</p>
+<h2>使用本地图标</h2>
+<p>对于有设计稿的项目，如果要完美还原，那只能从设计稿下载图标文件。</p>
+<p><strong>添加图标到项目的静态资源目录</strong></p>
+<p><img src="./assets/add-icon.png" alt=""></p>
+<p><strong>生成icon data</strong></p>
+<pre><code class="language-sh">npm add @iconify/tools
+</code></pre>
+<p>根目录添加个iconify.js:</p>
+<pre><code class="language-js">import { join, dirname, normalize } from &quot;node:path&quot;;
+import { fileURLToPath } from &quot;node:url&quot;;
+import { promises as fs } from &quot;fs&quot;;
+import {
+  importDirectory,
+  cleanupSVG,
+  runSVGO,
+  parseColors,
+  isEmptyColor,
+} from &quot;@iconify/tools&quot;;
+
+export function getDirname() {
+  const filename = fileURLToPath(import.meta.url);
+  return dirname(filename);
+}
+
+const DefaultOptions = {
+  sourcePath: &quot;/public/svgs&quot;,
+  destPath: &quot;/public/zs.json&quot;,
+};
+
+genIconJson();
+
+function genIconJson(options = {}) {
+  const finalOptions = { ...DefaultOptions, ...options };
+  refreshIconJson({
+    root: getDirname(),
+    ...finalOptions,
+  }).then(() =&gt; {
+    console.log(`${finalOptions.destPath} refreshed`);
+  });
+}
+
+async function refreshIconJson({ root, sourcePath, destPath }) {
+  const iconSet = await importDirectory(join(root, sourcePath), {
+    prefix: &quot;zs&quot;,
+    ignoreImportErrors: false,
+  });
+
+  iconSet.forEach((name, type) =&gt; {
+    if (type !== &quot;icon&quot;) {
+      return;
+    }
+
+    const svg = iconSet.toSVG(name);
+    if (!svg) {
+      iconSet.remove(name);
+      return;
+    }
+
+    try {
+      cleanupSVG(svg);
+
+      parseColors(svg, {
+        defaultColor: &quot;currentColor&quot;,
+        callback: (attr, colorStr, color) =&gt; {
+          if (!color) {
+            return colorStr;
+          }
+
+          if (isEmptyColor(color)) {
+            return color;
+          }
+          return &quot;currentColor&quot;;
+        },
+      });
+
+      runSVGO(svg);
+    } catch (err) {
+      console.error(`Error parsing ${name}:`, err);
+      iconSet.remove(name);
+      return;
+    }
+
+    // Update icon
+    iconSet.fromSVG(name, svg);
+  });
+
+  // Export as IconifyJSON
+  const exported = JSON.stringify(iconSet.export(), null, &quot;\t&quot;) + &quot;\n&quot;;
+
+  // Save to file
+  await fs.writeFile(join(root, destPath), exported, &quot;utf8&quot;);
+}
+</code></pre>
+<pre><code class="language-sh">node iconify
+</code></pre>
+<p>此时会生成一个zs.json, iconify会读取这个文件，里面列出了可以使用的图标。</p>
+<p><img src="./assets/gen-data.png" alt=""></p>
+<p>在入口文件处发请求：添加图标到iconify组件</p>
+<pre><code class="language-js">axios.get(&#39;/public/zs.json&#39;).then(({ data }) =&gt; {
+  addCollection(data);
+});
+</code></pre>
+<p>然后就能像用官方组件一样，用自己添加的组件：</p>
+<pre><code class="language-tsx">   &lt;Icon icon=&quot;zs:search&quot; style={{ color: &quot;blue&quot; }} /&gt;
+      &lt;Icon icon=&quot;zs:shopping&quot; style={{ color: &quot;red&quot; }} /&gt;
+      &lt;Icon icon=&quot;zs:user&quot; style={{ color: &quot;yellow&quot;, fontSize: &quot;24px&quot; }} /&gt;
+</code></pre>
+<p><img src="./assets/view.png" alt=""></p>
+<h2>写个vite插件优化流程</h2>
+<p>虽然可以使用本地图标，但每次修改svg目录，还是得跑一下iconify.js, 可用node监听svg目录变化自动run iconify.js.</p>
+<p>建议参考项目使用的cli,这里以vite为例写个插件：</p>
+<p>vite-plugin-iconify.js</p>
+<pre><code class="language-js">import { join, dirname, normalize } from &quot;node:path&quot;;
+import { fileURLToPath } from &quot;node:url&quot;;
+import { promises as fs } from &quot;fs&quot;;
+import {
+  importDirectory,
+  cleanupSVG,
+  runSVGO,
+  parseColors,
+  isEmptyColor,
+} from &quot;@iconify/tools&quot;;
+
+export function getDirname() {
+  const filename = fileURLToPath(import.meta.url);
+  return dirname(filename);
+}
+
+const DefaultOptions = {
+  sourcePath: &quot;/public/svgs&quot;,
+  destPath: &quot;/public/zs.json&quot;,
+};
+
+export default (options = {}) =&gt; {
+  const finalOptions = { ...DefaultOptions, ...options };
+  let root = getDirname();
+  return {
+    name: &quot;vite-plugin-iconify&quot;,
+    apply: &quot;serve&quot;,
+    configResolved(config) {
+      console.log(&quot;configResolved&gt;&gt;&gt;&quot;, config.root);
+      root = config.root;
+    },
+    configureServer(server) {
+      return () =&gt; {
+        // server.watcher.add(join(root, finalOptions.sourcePath));
+        server.watcher.on(&quot;add&quot;, (path) =&gt; {
+          // console.log(`File add: ${path} `);
+          refreshIconJson({
+            root,
+            changedFilePath: path,
+            ...finalOptions,
+          }).then(() =&gt; {
+            console.log(`${finalOptions.destPath} refreshed`);
+          });
+        });
+        server.watcher.on(&quot;unlink&quot;, (path) =&gt; {
+          // console.log(`File unlink: ${path} `);
+          refreshIconJson({
+            root,
+            changedFilePath: path,
+            ...finalOptions,
+          }).then(() =&gt; {
+            console.log(`${finalOptions.destPath} refreshed`);
+          });
+        });
+        server.watcher.on(&quot;change&quot;, (path) =&gt; {
+          // console.log(`File changed 2: ${path} `);
+          refreshIconJson({
+            root,
+            changedFilePath: path,
+            ...finalOptions,
+          }).then(() =&gt; {
+            console.log(`${finalOptions.destPath} refreshed`);
+          });
+        });
+      };
+    },
+  };
+};
+
+async function refreshIconJson({
+  root,
+  changedFilePath,
+  sourcePath,
+  destPath,
+}) {
+  if (!normalize(changedFilePath).includes(normalize(sourcePath))) return;
+  const iconSet = await importDirectory(join(root, sourcePath), {
+    prefix: &quot;zs&quot;,
+    ignoreImportErrors: false,
+  });
+
+  iconSet.forEach((name, type) =&gt; {
+    if (type !== &quot;icon&quot;) {
+      return;
+    }
+
+    const svg = iconSet.toSVG(name);
+    if (!svg) {
+      iconSet.remove(name);
+      return;
+    }
+
+    try {
+      cleanupSVG(svg);
+
+      parseColors(svg, {
+        defaultColor: &quot;currentColor&quot;,
+        callback: (attr, colorStr, color) =&gt; {
+          if (!color) {
+            return colorStr;
+          }
+
+          if (isEmptyColor(color)) {
+            return color;
+          }
+          return &quot;currentColor&quot;;
+        },
+      });
+
+      runSVGO(svg);
+    } catch (err) {
+      console.error(`Error parsing ${name}:`, err);
+      iconSet.remove(name);
+      return;
+    }
+
+    // Update icon
+    iconSet.fromSVG(name, svg);
+  });
+
+  // Export as IconifyJSON
+  const exported = JSON.stringify(iconSet.export(), null, &quot;\t&quot;) + &quot;\n&quot;;
+
+  // Save to file
+  await fs.writeFile(join(root, destPath), exported, &quot;utf8&quot;);
+}
+</code></pre>
+<p>vite.config.js</p>
+<pre><code class="language-js">import { defineConfig } from &quot;vite&quot;;
+import react from &quot;@vitejs/plugin-react&quot;;
+import iconify from &quot;./vite-plugin-iconify&quot;;
+
+export default defineConfig({
+    envDir: &quot;envs&quot;,
+    cacheDir: &quot;../../node_modules/.vite&quot;,
+    plugins: [react(), iconify()],
+  });
+</code></pre>
+<p>配置好后，只需要在svg目录修改图标就能直接用了，比svgr还方便一点，但这点可以忽略不记，</p>
+<p>关键是svgr不能用在小程序，这就导致小程序得换其它方案，但iconify支持font-class的用法，能在小程序使用。</p>
+<h2>用于微信小程序</h2>
+<p>这里以原生微信小程序为例。</p>
+<p>首先添加资源目录，放几个svg进去</p>
+<p><img src="./assets/mini-svgs.png" alt=""></p>
+<p>因为是font-class的用法，所以得先给这些图标生成css，和上面类似这里新建一个脚本：</p>
+<p>iconify.js</p>
+<pre><code class="language-js">import { writeFileSync } from &quot;node:fs&quot;;
+import { getIconCSS } from &quot;@iconify/utils&quot;;
+import {
+  importDirectory,
+  cleanupSVG,
+  runSVGO,
+  parseColors,
+  isEmptyColor,
+} from &quot;@iconify/tools&quot;;
+
+const svgPath = &quot;miniprogram/public/svgs&quot;;
+const destPath = &quot;miniprogram/icon.css&quot;;
+const ignoreNames = [&quot;logo&quot;];
+
+(async () =&gt; {
+  const iconSet = await importDirectory(svgPath, {
+    prefix: &quot;zs&quot;,
+    ignoreImportErrors: false,
+  });
+
+  let cssStr = &quot;&quot;;
+  iconSet.forEach((name, type) =&gt; {
+    if (type !== &quot;icon&quot; || ignoreNames.includes(name)) return;
+
+    const svg = iconSet.toSVG(name);
+    if (!svg) {
+      // Invalid icon
+      iconSet.remove(name);
+      return;
+    }
+
+    try {
+      cleanupSVG(svg);
+      parseColors(svg, {
+        defaultColor: &quot;currentColor&quot;,
+        callback: (attr, colorStr, color) =&gt; {
+          if (!color) {
+            return colorStr;
+          }
+
+          if (isEmptyColor(color)) {
+            return color;
+          }
+          return &quot;currentColor&quot;;
+        },
+      });
+
+      // Optimise
+      runSVGO(svg);
+    } catch (err) {
+      // Invalid icon
+      console.error(`ICON Error parsing ${name}:`, err);
+      iconSet.remove(name);
+      return;
+    }
+
+    const iconData = svg.getIcon();
+    cssStr +=
+      getIconCSS(iconData, {
+        iconSelector: &quot;.zs-icon__&quot; + name,
+      }) + &quot;\n&quot;;
+  });
+
+  writeFileSync(destPath, cssStr, &quot;utf8&quot;);
+  // todo: watch svgPath by chokidar
+})();
+</code></pre>
+<pre><code class="language-sh">node iconify.js
+</code></pre>
+<p>然后就会生成icon.css, 导入到全局的app.scss中去</p>
+<p><img src="./assets/iconcss.png" alt=""></p>
+<p>然后在wxml中使用</p>
+<p><img src="./assets/use-wxml.png" alt=""></p>
+<p>这样web和小程序端都能统一用iconify管理和开发图标，</p>
+<p>小程序也能像web端一样监听svg目录变化，自动执行脚本，如果用了taro这种框架，可以写个webpack插件，原生也可以用nodejs监听。</p>
+<p>小程序端的监听等会在做，现在还需要解决svg目录复用问题。</p>
+<h2>多端复用svg文件</h2>
+<p>到目前为止，iconify已经可以同时用于web和小程序，但可以看到，用一个svg目录，却要复制两份分别放到web端和小程序端的静态目录里，这还只是两个项目，如果这仓库有多个子项目，svg目录体积将成倍增长，而且跨项目也无法复用。</p>
+<p>下面开始改造目录结构，让多项目可从统一图标库复用图标，<strong>当前基础示例的代码暂存在 <code>iconify-base</code> 分支</strong></p>
+<h3>思路</h3>
+<p>利用monorepo的方式，单独创建一个图标库，暴露出web和小程序端使用到的iconData.json和icon.css, 并写一个node监听脚本，达到自动化。</p>
+<h4>创建图标库项目</h4>
+<p>在库中先node build生成icon-data.json和icon.css，然后导出：</p>
+<p><img src="./assets/gen-icons.png" alt=""></p>
+<h4>复用build出来的文件(json、css)</h4>
+<ol>
+<li>部署到远程(推荐)：这样只要远程跟新了，其它项目通过http请求就能直接更新；</li>
+<li>本地通过monorepo的方式引用：不能垮项目；</li>
+<li>把icons项目发布到npm: 更新麻烦。</li>
+</ol>
+<p>下面演示第2种方式。</p>
+<p>在web端引用：</p>
+<p><img src="./assets/use-in-web.png" alt=""></p>
+<p>如果远程部署了仍然可以通过http请求。</p>
+<p>在小程序引用：</p>
+<p>如果用了taro之类的，引用方式类似web端，</p>
+<p>但原生小程序小程序 <code>app.scss</code> 没法直接从monorepo中引入css,</p>
+<p>这里需要一个额外的脚本: </p>
+<p>在wechat项目根目录新建copy.js:</p>
+<pre><code class="language-js">import { copyFile } from &quot;node:fs/promises&quot;;
+
+try {
+  await copyFile(&quot;../icons/icon.css&quot;, &quot;./miniprogram/icon.css&quot;);
+  console.log(&quot;copy icon.css success&quot;);
+} catch (error) {
+  console.error(&quot;The icon.css could not be copied&quot;, error);
+}
+</code></pre>
+<pre><code class="language-sh">node copy
+</code></pre>
+<p>这样就将icon.css复制到小程序里了，然后引入并使用：</p>
+<p><img src="./assets/use-in-mini.png" alt=""></p>
+<h2>小结</h2>
+<p>现在web端和小程序端，甚至更多的端比如管理系统，或其他子项目，</p>
+<p>都可以从同一个icons库复用图标</p>
+<ol>
+<li>统一了多端技术栈 —— iconify.js；</li>
+<li>多项目复用同一个图标库；</li>
+<li>把icon一次下载好后，运行一次脚本，所有web和taro等项目即可使用，原生小程序得多跑一次脚本。</li>
+</ol>
+<h2>更进一步</h2>
+<p>流程上还有些可优化的点：</p>
+<ol>
+<li>监听icons/svgs目录，每次svgs变化自动刷新json和css（如果需要频繁的更新icons里的svg文件）;</li>
+<li>原生小程序视情况也可以改成监听脚本；</li>
+<li>随着图标越来越多，json和css也会越来越大，能否按需加载？</li>
+</ol>
+<p>第二条做法同第一条。</p>
+<p>第三条只需把icon-data.json中的icons字段拆开就行。</p>
+<h3>下面只实现第一条</h3>
+<p><strong>添加一个watch.js和script:</strong></p>
+<p><img src="./assets/watch.png" alt=""></p>
+<pre><code class="language-sh">  // 监听svgs变化，自动刷新icon.css和icon-data.json
+  npm run dev
+</code></pre>
+<p>所以如果项目需要频繁变动svg文件，
+只需多跑一个 <code>npm run dev</code> 即可。</p>
+<h2>运行最终代码</h2>
+<p>运行main分支代码：</p>
+<pre><code class="language-sh">pnpm i
+
+pnpm dev:icons
+
+pnpm dev:play
+</code></pre>
+<p>实际项目可视情况用 <code>concurrently</code> 合并 pnpm dev:icons 和 pnpm dev:play</p>
+<pre><code class="language-sh">&quot;concurrently \&quot;pnpm dev:icons\&quot; \&quot;pnpm dev:play\&quot;&quot;,
+</code></pre>

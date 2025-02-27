@@ -7,19 +7,20 @@
 
 # 多端统一的图标管理方案
 
-> 本文目标：
+> **本文目标：创建一个icons库，且具有一下特性：**
+
  - 多端统一技术栈：pc, mobile,小程序等使用同一个icon解决方案；
- - 图标目录复用： 多端可复用同一目录的图标，甚至可以跨项目引用同一图标库；
- - 极简的管理方式：只需在一个目录添加一个svg文件，无需额外配置即可在n个项目中直接使用。
+ - 图标目录复用： 多端可复用同一icons库的图标，甚至可以跨项目引用同一icons库；
+ - 极简的管理方式：只需在icons目录增删改svg文件，无需额外配置即可在n个项目中直接使用。
 
 
 > tips:
 > 
 > node: v20+
 >
-> 最终代码在 `main` 分支，
+> 最终代码在 <a href="https://github.com/lycHub/frontend-shared/tree/iconify-base/docs/%E5%A4%9A%E7%AB%AF%E7%BB%9F%E4%B8%80%E7%9A%84%E5%9B%BE%E6%A0%87%E7%AE%A1%E7%90%86%E6%96%B9%E6%A1%88" target="_blank">main</a> 分支，
 > 
-> 前面基础示例在 `iconify-base` 分支
+> 前面基础示例在 <a href="https://github.com/lycHub/frontend-shared/tree/iconify-base" target="_blank">iconify-base</a> 分支
 
 ## 痛点：图标开发管理的混乱
 

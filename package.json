@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "frontend knowledge shared",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev:icons": "pnpm -F=@frontend-shared/icons dev",
     "build:icons": "pnpm -F=@frontend-shared/icons build",
@@ -18,5 +19,8 @@
   "dependencies": {
     "@faker-js/faker": "^9.5.0",
     "sass": "^1.85.1"
+  },
+  "devDependencies": {
+    "marked": "^15.0.7"
   }
 }
