@@ -28,42 +28,49 @@
 
 **1. 使用方式非常多**
 
-	前端开发中，使用图标的方式非常多，传统的有使用图片、Svg，从字体图标（Icon Fonts）等。基于框架又有很多不同封装，可以自己封装<Icon />组件，也可用第三方库比如svgr。并且每种使用方式也有多种。
-	
-	比如图片可以用`<img />`标签，也可以css url()；
-	
-	字体图标可以用 unicode `<i class="iconfont">&#x33;</i>` 或 font-class的方式 `<i class="iconfont icon-xxx"></i>`;
-	
-	svg可以直接使用`<svg />`标签，也可以图片标签加载`<img src="menu.svg" />`, css url也可以加载svg.
+前端开发中，使用图标的方式非常多，传统的有使用图片、Svg，从字体图标（Icon Fonts）等。基于框架又有很多不同封装，可以自己封装<Icon />组件，也可用第三方库比如svgr。并且每种使用方式也有多种。
+
+比如图片可以用`<img />`标签，也可以css url()；
+
+字体图标可以用 unicode `<i class="iconfont">&#x33;</i>` 或 font-class的方式 `<i class="iconfont icon-xxx"></i>`;
+
+svg可以直接使用`<svg />`标签，也可以图片标签加载`<img src="menu.svg" />`, css url也可以加载svg.
 
 
 **2. 多种图标来源**
 
-	- 在线平台比如iconfont, iconify等;
-	- 设计稿直接下载.
+- 在线平台比如iconfont, iconify等;
+- 设计稿直接下载.
 
 **3. 多项目可复用性**
 
-	很多项目都有pc和mobile端，甚至小程序，它们往往都是同一套ui风格，图标也几乎是从同一份设计稿下载的，
+很多项目都有pc和mobile端，甚至小程序，它们往往都是同一套ui风格，图标也几乎是从同一份设计稿下载的，
 
-	但日常开发中同样的图标文件往往只能通过cv的方式粘到各个端的项目中，造成维护成本翻倍，占磁盘空间。
+但日常开发中同样的图标文件往往只能通过cv的方式粘到各个端的项目中，造成维护成本翻倍，占磁盘空间。
 
 ## font-class和svg的局限
 
-尽管上述有那么多使用图标的方式，但实际开发大多是使用svg和font-class的方式， 因为他们都可以直接通过css来改变尺寸和颜色，这种便利性是其它方案难以做到的，但这两种方式仍有一些局限性。
+尽管上述有那么多使用图标的方式，但实际开发大多是使用svg和font-class的方式， 
 
-	 svg: 只有svg标签的方式能做到用css改变颜色和尺寸，但直接写svg标签会降低html的可读性，所以每种技术栈都有各自的库来简化svg的使用比如react的svgr, 原生的web component, 这在web端很方便但其它不支持svg标签的端呢？(各种小程序)。
-	 font-class: 这是唯一能同时在web和小程序使用的方式，并且可以通过css改变图标属性，但它缺点也很多，比如要加载额外的字体文件，高分辨率下会模糊，不能用js控制内部细节，比如图标的路径动画？
+因为他们都可以直接通过css来改变尺寸和颜色，这种便利性是其它方案难以做到的，但这两种方式仍有一些局限性。
+
+**在支持用css改图标样式的前提下：**
+
+svg: 不支持小程序。
+
+font-class: 高分辨率下会模糊，不能用js控制内部细节，比如图标的路径动画？
 
 ## 确定方案
-	由于svg能精细的控制内部path，方便做path动画，并且不会失真，所以web端还是用svg做图标是目前最合适的方案；
-	小程序为了能让css改变图标，只有font-class的方式是最合适的
 
-传统的做法是web端项目用svg的封装库，比如svgr，小程序端用iconfont的font-class方案，
+web: 用svg标签，因为不会失真且能用js控制内部细节，方便做动画；
 
-今天介绍的就是能统一web和小程序技术栈的图标库 —— <a href="https://iconify.design/" target="_blank">Iconify</a>
+小程序：为了能用css改图标样式，只能用font-class。
 
-以及多端多项目如何引用同一个图标目录。
+传统的做法是web端项目用svg的封装库，比如svgr，小程序端用iconfont的font-class方案。
+
+今天介绍一个能统一web和小程序技术栈的图标库 —— <a href="https://iconify.design/" target="_blank">Iconify</a>
+
+最后还会演示多端多项目如何引用同一个图标库。
 
 
 ## <a href="https://iconify.design/" target="_blank">Iconify</a> 简介
