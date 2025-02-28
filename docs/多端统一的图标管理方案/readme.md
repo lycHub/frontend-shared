@@ -137,7 +137,7 @@ function Page() {
 
 ![](./assets/preview.png)
 
-用到那个图标，就是去加载对应的json文件。
+用到哪个图标，就是去加载对应的json文件。
 
 **改变属性**
 
