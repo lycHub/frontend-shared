@@ -24,6 +24,16 @@
 
 ## <a href="https://stackblitz.com/~/github.com/lycHub/frontend-shared" target="_blank">在线Demo</a>
 
+运行main分支代码：
+
+```sh
+pnpm i
+
+pnpm dev:icons
+
+pnpm dev:play
+```
+
 ## 痛点：图标开发管理的混乱
 
 **1. 使用方式非常多**
