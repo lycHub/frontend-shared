@@ -1,0 +1,8 @@
+#app {
+  font-size: 16px;
+  text-align: center;
+}
+
+#app .form .form-item {
+  padding-block: 16px;
+}

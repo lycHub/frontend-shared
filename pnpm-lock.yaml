@@ -19,6 +19,15 @@ importers:
         specifier: ^15.0.7
         version: 15.0.7
 
+  apps/ast:
+    devDependencies:
+      typescript:
+        specifier: ~5.7.2
+        version: 5.7.3
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.0(@types/node@22.13.5)(sass@1.85.1)
+
   apps/icons:
     devDependencies:
       '@iconify/tools':
