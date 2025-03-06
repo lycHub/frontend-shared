@@ -8,7 +8,8 @@
     "dev:icons": "pnpm -F=@frontend-shared/icons dev",
     "build:icons": "pnpm -F=@frontend-shared/icons build",
     "dev:play": "pnpm -F=@frontend-shared/playground dev",
-    "dev:ast": "pnpm -F=@frontend-shared/ast dev"
+    "dev:ast": "pnpm -F=@frontend-shared/ast dev",
+    "parse:ast": "pnpm -F=@frontend-shared/ast parse"
   },
   "keywords": [
     "frontend",
