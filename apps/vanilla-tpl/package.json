@@ -1,0 +1,25 @@
+{
+  "name": "@frontend-shared/vanilla-tpl",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc && vite",
+    "lint:es": "eslint --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@tailwindcss/vite": "^4.0.11",
+    "@types/urijs": "^1.19.25",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.1.0",
+    "tailwindcss": "^4.0.11",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "consola": "^3.4.0",
+    "urijs": "^1.19.11"
+  }
+}

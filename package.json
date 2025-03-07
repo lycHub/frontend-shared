@@ -9,7 +9,8 @@
     "build:icons": "pnpm -F=@frontend-shared/icons build",
     "dev:play": "pnpm -F=@frontend-shared/playground dev",
     "dev:ast": "pnpm -F=@frontend-shared/ast dev",
-    "parse:ast": "pnpm -F=@frontend-shared/ast parse"
+    "parse:ast": "pnpm -F=@frontend-shared/ast parse",
+    "dev:vanilla": "pnpm -F=@frontend-shared/vanilla-tpl dev"
   },
   "keywords": [
     "frontend",
