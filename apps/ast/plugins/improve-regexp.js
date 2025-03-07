@@ -29,7 +29,7 @@ export default () => {
         path.scope.rename(oldName, newIdentifier);
         path.parentPath.remove();
 
-        const newDeclareation = t.variableDeclaration("const", [
+        const newDeclaration = t.variableDeclaration("const", [
           t.variableDeclarator(
             t.identifier(newIdentifier),
             t.regExpLiteral(path.parent.init.pattern)
@@ -37,7 +37,7 @@ export default () => {
         ]);
 
         const program = path.findParent(t.isProgram);
-        program.node.body.unshift(newDeclareation);
+        program.node.body.unshift(newDeclaration);
       },
     });
     const { code } = generate.default(ast, {}, sourceCode);
