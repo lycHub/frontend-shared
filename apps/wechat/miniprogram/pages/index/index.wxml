@@ -5,4 +5,14 @@
   <view class="zs-icon__search"></view>
   <view class="zs-icon__shopping"></view>
   <view class="zs-icon__user" style="color: #e00;"></view>
+
+   <view class="page-section">
+    <view class="weui-cells__title">实时获取输入值：{{inputValue}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" focus="{{true}}" value="{{inputValue}}" 
+         bindinput="bindKeyInput" placeholder="输入同步到view中"/>
+      </view>
+    </view>
+  </view>
 </scroll-view>

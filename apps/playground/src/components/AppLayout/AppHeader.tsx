@@ -7,6 +7,9 @@ function AppHeader() {
         <NavLink className="nav-link" to="/" viewTransition>
           Play
         </NavLink>
+        <NavLink className="nav-link" to="/ast" viewTransition>
+          Ast
+        </NavLink>
       </nav>
     </header>
   );
