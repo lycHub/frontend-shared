@@ -24,18 +24,25 @@
 >
 > node: v20+
 >
-> 最终代码在 <a href="https://github.com/lycHub/frontend-shared/tree/iconify-base/docs/%E5%A4%9A%E7%AB%AF%E7%BB%9F%E4%B8%80%E7%9A%84%E5%9B%BE%E6%A0%87%E7%AE%A1%E7%90%86%E6%96%B9%E6%A1%88" target="_blank">ast</a> 分支
+> 最终代码在 <a href="https://github.com/lycHub/frontend-shared/blob/main/docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81.md" target="_blank">main</a> 分支
 
-todo: 修改
+## <a href="https://stackblitz.com/~/github.com/lycHub/frontend-shared?file=docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81.md" target="_blank">在线 Demo</a>
 
-## <a href="https://stackblitz.com/~/github.com/lycHub/frontend-shared" target="_blank">在线 Demo</a>
-
-运行 ast 分支代码：
+运行 ast demo：
 
 ```sh
 pnpm i
 
 pnpm build:ast
+
+```
+
+运行 playground demo：
+
+```sh
+pnpm i
+
+pnpm dev:play
 
 ```
 
