@@ -24,7 +24,7 @@
 >
 > node: v20+
 >
-> 最终代码在 <a href="https://github.com/lycHub/frontend-shared/blob/main/docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81.md" target="_blank">main</a> 分支
+> 最终代码在 <a href="https://github.com/lycHub/frontend-shared/blob/main/docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E5%92%8C%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81.md" target="_blank">main</a> 分支
 
 ## <a href="https://stackblitz.com/~/github.com/lycHub/frontend-shared?file=docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E5%92%8C%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81.md" target="_blank">在线 Demo</a>
 
