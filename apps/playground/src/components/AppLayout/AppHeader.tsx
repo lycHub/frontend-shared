@@ -8,7 +8,10 @@ function AppHeader() {
           Play
         </NavLink>
         <NavLink className="nav-link" to="/ast" viewTransition>
-          Ast
+          Ast walk
+        </NavLink>
+        <NavLink className="nav-link" to="/auto-dts" viewTransition>
+          Auto dts
         </NavLink>
       </nav>
     </header>
