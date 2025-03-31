@@ -47,7 +47,7 @@ pnpm dev:play
 
 ### 新建一个[vite 插件](https://cn.vite.dev/guide/api-plugin.html)
 
-新建 plugins/auto-dts.js 并写些模板代码
+新建 plugins/auto-dts.ts 并写些模板代码
 
 ```js
 export default (options) => {
@@ -61,7 +61,7 @@ export default (options) => {
 };
 ```
 
-在 vite.config.js 中使用：
+在 vite.config.ts 中使用：
 
 ![](./assets/1.png)
 
@@ -196,7 +196,7 @@ const DefaultOptions = {
 };
 ```
 
-auto-dts.js:
+auto-dts.ts:
 
 ```js
 // ...
@@ -301,7 +301,7 @@ async function genType(data) {
 ```js
 const onClick = () => {
   fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((res) => res.json())
+    .then((res) => res.tson())
     .then((res) => {
       fetch("/gen-dts", {
         method: "POST",
