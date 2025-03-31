@@ -18,9 +18,9 @@
 >
 > node: v20+
 >
-> 最终代码在 [main 分支](https://github.com/lycHub/frontend-shared/blob/main/docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E5%92%8C%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81.md)
+> 最终代码在 [main 分支](https://github.com/lycHub/frontend-shared/blob/main/docs/%E5%B0%86json%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90dts%E6%96%87%E4%BB%B6/readme.md)
 
-## [在线 Demo](https://stackblitz.com/~/github.com/lycHub/frontend-shared?file=docs/%E9%81%8D%E5%8E%86ast/1-%E5%86%99babel%E6%8F%92%E4%BB%B6%E7%BC%96%E8%AF%91%E5%92%8C%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81.md)
+## [在线 Demo](https://stackblitz.com/~/github.com/lycHub/frontend-shared?file=docs/%E5%B0%86json%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90dts%E6%96%87%E4%BB%B6/readme.md)
 
 运行 playground demo：
 
