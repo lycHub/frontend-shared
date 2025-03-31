@@ -6,30 +6,29 @@ export function getDirname() {
   return dirname(filename);
 }
 
-export function isJson(str) {
-  if (typeof str == "string") {
+export function isJsonString(data: unknown) {
+  if (typeof data === "string") {
     try {
-      JSON.parse(str);
-      return true;
-    } catch (e) {
-      console.log("Json parse error：" + str + "!!!" + e);
-      return false;
+      return JSON.parse(data);
+    } catch (error) {
+      console.error(error);
+      return null;
     }
   }
-  return false;
+  return data;
 }
 
-export function isObj(obj) {
+export function isObj(obj: unknown) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
-export function isArray(obj) {
+export function isArray(obj: unknown) {
   return Object.prototype.toString.call(obj) === "[object Array]";
 }
 
-export function validBodyString(data) {
+export function validBodyString(data: unknown) {
   let errMsg = "";
-  if (!isJson(data)) {
+  if (!isJsonString(data)) {
     errMsg = "data must be an json string";
   }
   return errMsg;

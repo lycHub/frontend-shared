@@ -1,17 +1,15 @@
+import axios from "axios";
 function AutoDts() {
   const onClick = () => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((res) => {
-        fetch("/gen-dts", {
-          method: "POST",
-          body: JSON.stringify(res),
-        });
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts/1")
+      .then(({ data }) => {
+        console.log("data", data);
       });
   };
 
   return (
-    <div className="play-page">
+    <div className="dts-page">
       <h3>Auto dts</h3>
       <button onClick={onClick}>send request</button>
     </div>
