@@ -1,8 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { marked } from "marked";
 
-const basePath = "./docs/遍历ast";
-const fileName = "1-写babel插件编译和优化代码";
+const basePath = "./docs/将json数据自动生成dts文件";
+const fileName = "readme";
 
 async function logFile() {
   try {
