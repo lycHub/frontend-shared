@@ -1,9 +1,11 @@
+import axios from "axios";
+
 function AutoDts() {
   const onClick = () => {
-    fetch("https://jsonplaceholder.typicode.com/posts/1")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("onClick :>> ", res);
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts/1")
+      .then(({ data }) => {
+        console.log("onClick :>> ", data);
       });
   };
   return (

@@ -11,6 +11,9 @@ importers:
       '@faker-js/faker':
         specifier: ^9.5.0
         version: 9.5.0
+      axios:
+        specifier: ^1.8.4
+        version: 1.8.4
       sass:
         specifier: ^1.85.1
         version: 1.85.1
@@ -1548,6 +1551,9 @@ packages:
 
   axios@1.8.0:
     resolution: {integrity: sha512-AS3x1klSQ4VeoeAaOyITVjomjITxIRgpKVgAXhE8QFJiNiYliuU+cW0p7XpqvlwNKmiwE57aNEyhPtsfAxERqg==}
+
+  axios@1.8.4:
+    resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
   babel-plugin-polyfill-corejs2@0.4.12:
     resolution: {integrity: sha512-CPWT6BwvhrTO2d8QVorhTCQw9Y43zOu7G9HigcfxvepOU6b8o3tcWad6oVgZIsZCTt42FFv97aA7ZJsbM4+8og==}
@@ -4560,6 +4566,14 @@ snapshots:
   asynckit@0.4.0: {}
 
   axios@1.8.0:
+    dependencies:
+      follow-redirects: 1.15.9
+      form-data: 4.0.2
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
+  axios@1.8.4:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.2
