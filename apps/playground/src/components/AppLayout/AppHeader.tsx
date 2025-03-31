@@ -13,6 +13,9 @@ function AppHeader() {
         <NavLink className="nav-link" to="/auto-dts" viewTransition>
           Auto dts
         </NavLink>
+        <NavLink className="nav-link" to="/auto-dts" viewTransition>
+          Auto dts
+        </NavLink>
       </nav>
     </header>
   );
