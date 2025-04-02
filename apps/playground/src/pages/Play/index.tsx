@@ -6,9 +6,16 @@ function Play() {
     <div className="play-page">
       <h3>Play here</h3>
       <Icon icon="ri:armchair-fill" />
-      <Icon icon="ri:armchair-fill" style={{ color: '#e00' }} />
-      <Icon icon="ri:armchair-fill" style={{ color: '#e00', fontSize: '2em' }} />
-      <Icon icon="ri:armchair-fill" style={{ color: '#e00', fontSize: '2em' }} rotate={45} />
+      <Icon icon="ri:armchair-fill" style={{ color: "#e00" }} />
+      <Icon
+        icon="ri:armchair-fill"
+        style={{ color: "#e00", fontSize: "2em" }}
+      />
+      <Icon
+        icon="ri:armchair-fill"
+        style={{ color: "#e00", fontSize: "2em" }}
+        rotate={45}
+      />
 
       <hr />
 
