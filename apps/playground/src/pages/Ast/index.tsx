@@ -1,4 +1,5 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Post, postDetail } from "../../apis";
 import "./style.scss";
 
 const width = "100px";
@@ -32,7 +33,7 @@ function Ast() {
     if (num > 0.4) {
       console.log("large");
     } else if (x > 20) {
-      console.log("aa");
+      console.log("aaa");
     } else if (x < 20) {
       console.log("bb");
     } else {
@@ -40,13 +41,38 @@ function Ast() {
     }
   };
 
+  const [data, setData] = useState<Post>();
+
+  useEffect(() => {
+    postDetail(1).then(({ data }) => {
+      console.log("data", data);
+      setData(data);
+    });
+  }, []);
+
   return (
     <div className="ast-page">
       <h3>Ast here</h3>
       <div className="box" style={boxStyle()}>
         box
       </div>
+      {data && (
+        <div className="info">
+          <p>title: {data.title}</p>
+          <p>body: {data.body}</p>
+        </div>
+      )}
+
       <button onClick={onClick}>click</button>
+
+      <div>
+        {data ? (
+          <div className="info">
+            <p>title: {data.title}</p>
+            <p>body: {data.body}</p>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -14,6 +14,7 @@ export default tseslint.config(
     },
     rules: {
       "enhance/force-conditions-within-block": "error",
+      "enhance/no-and-chain-within-jsx": "error",
     },
   },
   {

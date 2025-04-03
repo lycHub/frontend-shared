@@ -15,7 +15,6 @@ const plugin = {
         },
         fixable: "code",
         // hasSuggestions: true,
-        // important: true,
         messages: {
           notBar:
             'Value other than "bar" assigned to `const foo`. Unexpected value: {{ notBar }}.',

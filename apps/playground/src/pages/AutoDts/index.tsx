@@ -1,14 +1,13 @@
 import axios from "axios";
+import { postDetail } from "../../apis";
 function AutoDts() {
   const onClick = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts/1")
-      .then(({ data }) => {
-        console.log("data", data);
-        if (import.meta.env.DEV) {
-          axios.post("/gen-dts", { posts: data });
-        }
-      });
+    postDetail(1).then(({ data }) => {
+      console.log("data", data);
+      if (import.meta.env.DEV) {
+        axios.post("/gen-dts", { posts: data });
+      }
+    });
   };
 
   return (

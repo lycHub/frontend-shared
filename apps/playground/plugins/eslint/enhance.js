@@ -2,17 +2,18 @@ export default {
   meta: {
     name: "eslint-plugin-enhance",
     version: "0.0.1",
+    docs: {
+      description: "Enhance eslint rules.",
+    },
   },
   rules: {
     "force-conditions-within-block": {
       meta: {
-        type: "problem",
+        type: "layout",
         docs: {
-          description: "Enhance eslint rules.",
+          description: "Condition statements must be within a block.",
         },
         fixable: "code",
-        // hasSuggestions: true,
-        // important: true,
         messages: {
           notWithinBlock: "Condition statements must be within a block.",
         },
@@ -21,6 +22,48 @@ export default {
         return {
           IfStatement(node) {
             loopIfStatement(node, context);
+          },
+        };
+      },
+    },
+    "no-and-chain-within-jsx": {
+      meta: {
+        type: "suggestion",
+        docs: {
+          description: "Not allow && statements within jsx element.",
+        },
+        fixable: "code",
+        hasSuggestions: true,
+        messages: {
+          noAndChainWithinJsx: "Not allow && statements within jsx element.",
+        },
+      },
+      create(context) {
+        return {
+          JSXExpressionContainer(node) {
+            const expressionNode = node.expression;
+            if (
+              expressionNode?.type === "LogicalExpression" &&
+              expressionNode.operator === "&&"
+            ) {
+              const sourceCode = context.sourceCode;
+              const newText = `${sourceCode.getText(
+                expressionNode.left
+              )} ? ${sourceCode.getText(expressionNode.right)} : null`;
+              // console.log("newText>>>", newText);
+              context.report({
+                node: expressionNode,
+                messageId: "noAndChainWithinJsx",
+                suggest: [
+                  {
+                    messageId: "noAndChainWithinJsx",
+                    fix(fixer) {
+                      return fixer.replaceText(expressionNode, newText);
+                    },
+                  },
+                ],
+              });
+            }
           },
         };
       },
