@@ -56,12 +56,12 @@ function Ast() {
       <div className="box" style={boxStyle()}>
         box
       </div>
-      {data && (
+      {data ? (
         <div className="info">
           <p>title: {data.title}</p>
           <p>body: {data.body}</p>
         </div>
-      )}
+      ) : null}
 
       <button onClick={onClick}>click</button>
 

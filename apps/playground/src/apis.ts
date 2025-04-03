@@ -5,6 +5,7 @@ export interface Post {
   id: number;
   title: string;
   body: string;
+  fn?: () => void;
 }
 
 export function postDetail(id: number) {
