@@ -3,17 +3,17 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import foobar from "./plugins/eslints/foo-bar.js";
+import enhance from "./plugins/eslint/enhance.js";
 
 export default tseslint.config(
   { ignores: ["dist"] },
   {
     files: ["src/**/*.{ts,tsx}"],
     plugins: {
-      foobar,
+      enhance,
     },
     rules: {
-      "foobar/foo-bar": "error",
+      "enhance/force-conditions-within-block": "error",
     },
   },
   {

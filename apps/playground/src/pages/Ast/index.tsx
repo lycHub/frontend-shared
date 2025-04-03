@@ -7,13 +7,15 @@ const height = "100px";
 const x = 210.66;
 const y = 300;
 
-const foo = "bar";
-console.log(foo);
+if (Math.random() > 0.5) {
+  console.log("large");
+} else if (y > 20) {
+  console.log("yy");
+} else {
+  console.log("small");
+}
 
 function Ast() {
-  const foo = "bar";
-  console.log(foo);
-
   const boxStyle = useCallback(() => {
     return {
       width,
@@ -24,12 +26,27 @@ function Ast() {
     };
   }, []);
 
+  const onClick = () => {
+    const num = Math.random();
+
+    if (num > 0.4) {
+      console.log("large");
+    } else if (x > 20) {
+      console.log("aa");
+    } else if (x < 20) {
+      console.log("bb");
+    } else {
+      console.log("small");
+    }
+  };
+
   return (
     <div className="ast-page">
       <h3>Ast here</h3>
       <div className="box" style={boxStyle()}>
         box
       </div>
+      <button onClick={onClick}>click</button>
     </div>
   );
 }
