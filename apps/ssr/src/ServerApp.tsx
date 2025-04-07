@@ -17,6 +17,7 @@ export default function ServerApp({ loadedData }) {
             <App loadedData={loadedData} />
           </StrictMode>
         </div>
+        <script type="module" src="/src/entry-client.tsx"></script>
       </body>
     </html>
   );

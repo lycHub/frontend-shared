@@ -11,7 +11,8 @@
     "build:ast": "pnpm -F=@frontend-shared/ast build",
     "dev:vanilla": "pnpm -F=@frontend-shared/vanilla-tpl dev",
     "dev:ssr": "pnpm -F=@frontend-shared/ssr dev:ssr",
-    "build:server:ssr": "pnpm -F=@frontend-shared/ssr build:server"
+    "build:server": "pnpm -F=@frontend-shared/ssr build:server",
+    "build:ssr": "pnpm -F=@frontend-shared/ssr build"
   },
   "keywords": [
     "frontend",
@@ -28,5 +29,8 @@
   "devDependencies": {
     "concurrently": "^9.1.2",
     "marked": "^15.0.7"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   }
 }

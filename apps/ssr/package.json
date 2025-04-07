@@ -8,7 +8,9 @@
     "dev:ssr": "concurrently \"pnpm build:server:watch\" \"nodemon server/dist/index.js\"",
     "build:server:watch": "tsc -w --project tsconfig.server.json",
     "build:server": "tsc --project tsconfig.server.json",
-    "build": "tsc -b && vite build",
+    "build": "pnpm build:ssr",
+    "build:client": "vite build --outDir dist/client --ssrManifest",
+    "build:ssr": "vite build --outDir dist/server --ssr src/entry-server.tsx",
     "lint": "eslint .",
     "preview": "vite preview"
   },

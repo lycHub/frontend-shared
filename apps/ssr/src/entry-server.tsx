@@ -12,7 +12,7 @@ export function render({
     <ServerApp loadedData={loadedData} />,
     {
       // bootstrapScripts: ["/src/entry-client.tsx"],
-      bootstrapModules: ["/src/entry-client.jsx"],
+      // bootstrapModules: ["/src/entry-client.tsx"],
       bootstrapScriptContent: `window.__LOADED_STATE__ = ${JSON.stringify(
         loadedData
       )};`,
