@@ -8,18 +8,10 @@ const LoadedState = window.__LOADED_STATE__;
 const root = document.getElementById("root");
 console.log("ssr>>", import.meta.env.SSR);
 if (root) {
-  if (import.meta.env.SSR) {
-    hydrateRoot(
-      root,
-      <StrictMode>
-        <App loadedData={LoadedState} />
-      </StrictMode>
-    );
-  } else {
-    createRoot(root).render(
-      <StrictMode>
-        <App loadedData={LoadedState} />
-      </StrictMode>
-    );
-  }
+  hydrateRoot(
+    root,
+    <StrictMode>
+      <App loadedData={LoadedState} />
+    </StrictMode>
+  );
 }

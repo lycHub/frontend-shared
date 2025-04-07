@@ -3,15 +3,15 @@ import ServerApp from "./ServerApp";
 
 export function render({
   originalUrl,
+  htmlStr,
   loadedData,
   onShellReady,
   onShellError,
   onAllReady,
 }) {
   const { pipe, abort } = renderToPipeableStream(
-    <ServerApp loadedData={loadedData} />,
+    <ServerApp htmlStr={htmlStr} loadedData={loadedData} />,
     {
-      // bootstrapScripts: ["/src/entry-client.tsx"],
       // bootstrapModules: ["/src/entry-client.tsx"],
       bootstrapScriptContent: `window.__LOADED_STATE__ = ${JSON.stringify(
         loadedData

@@ -8,13 +8,15 @@
     "dev:ssr": "concurrently \"pnpm build:server:watch\" \"nodemon server/dist/index.js\"",
     "build:server:watch": "tsc -w --project tsconfig.server.json",
     "build:server": "tsc --project tsconfig.server.json",
-    "build": "pnpm build:ssr",
+    "build": "pnpm build:client && pnpm build:ssr && pnpm build:server",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:ssr": "vite build --outDir dist/server --ssr src/entry-server.tsx",
+    "preview:ssr": "set NODE_ENV=production && node server/dist/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "html-react-parser": "^5.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

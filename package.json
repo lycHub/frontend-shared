@@ -12,7 +12,8 @@
     "dev:vanilla": "pnpm -F=@frontend-shared/vanilla-tpl dev",
     "dev:ssr": "pnpm -F=@frontend-shared/ssr dev:ssr",
     "build:server": "pnpm -F=@frontend-shared/ssr build:server",
-    "build:ssr": "pnpm -F=@frontend-shared/ssr build"
+    "build:ssr": "pnpm -F=@frontend-shared/ssr build",
+    "preview:ssr": "pnpm -F=@frontend-shared/ssr preview:ssr"
   },
   "keywords": [
     "frontend",

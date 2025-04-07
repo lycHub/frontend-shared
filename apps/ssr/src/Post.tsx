@@ -6,12 +6,13 @@ import axios from "axios";
 const getPost = () => {
   console.log("getPosts run");
   return axios
-    .get("https://jsonplaceholder.typicode.com/posts/1")
+    .get("https://dogapi.dog/api/v2/breeds")
     .then((res) => res.data);
 };
 
 function Post({ loadedData }) {
-  const [data, setData] = useState(loadedData);
+  const [data, setData] = useState(loadedData?.data || []);
+  // console.log('data', data);
 
   useEffect(() => {
     if (!data) {
@@ -20,14 +21,17 @@ function Post({ loadedData }) {
   }, []);
 
   return (
-    <p
-      onClick={() => {
+    <dl>
+      <dt onClick={() => {
         console.log("aaa");
         alert("aa");
-      }}
-    >
-      postData-ss: {data?.title}
-    </p>
+      }}>birds</dt>
+      {
+        data.map((item) => (
+          <dd key={item.id}>{item.attributes.name}</dd>
+        ))
+      }
+    </dl>
   );
 }
 
