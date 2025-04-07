@@ -9,7 +9,7 @@ const PORT = isDev ? 3000 : 3001;
 
 app.get(/(.*)/, isDev ? devRouter : devRouter);
 
-app.use((err, req, res, next) => {
+app.use((err, _, res) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });

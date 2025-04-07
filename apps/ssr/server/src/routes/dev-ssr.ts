@@ -2,9 +2,8 @@ import express from "express";
 import { createServer } from "vite";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import fse from "fs-extra";
+// import fse from "fs-extra";
 
-const { readFileSync } = fse;
 const router = express.Router({ caseSensitive: true });
 
 async function createViteServer() {
@@ -30,10 +29,10 @@ async function createViteServer() {
 
   router.get(/(.*)/, async (req, res, next) => {
     const originalUrl = req.originalUrl;
-    const originHtml = readFileSync(
+    /*  const originHtml = readFileSync(
       join(__dirname, "../../index.html"),
       "utf-8"
-    );
+    ); */
 
     /*  const serverAction = RouteServerMap["/"];
     if (serverAction) {
@@ -41,7 +40,7 @@ async function createViteServer() {
       console.log("data :>> ", data);
     } */
 
-    const module = await import(`../../src/test.js`);
+    const module = await import(`../apis/test.js`);
     let loadedData = null;
     if (module.getServerSideProps) {
       loadedData = await module.getServerSideProps();
@@ -50,7 +49,7 @@ async function createViteServer() {
     try {
       // const template = await vite.transformIndexHtml(originalUrl, originHtml);
       const { render } = await vite.ssrLoadModule(
-        join(__dirname, "../../src/entry-server.tsx")
+        join(__dirname, "../../../src/entry-server.tsx")
       );
       const { pipe, abort } = render({
         originalUrl,
@@ -79,8 +78,8 @@ async function createViteServer() {
       // `;
       // res.status(200).set({ "Content-Type": "text/html" }).end(html);
       // next();
-    } catch (error) {
-      vite.ssrFixStacktrace(error);
+    } catch (error: unknown) {
+      vite.ssrFixStacktrace(error as Error);
       console.error(error);
       next(error);
     }

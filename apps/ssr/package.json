@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev:spa": "vite",
-    "dev:ssr": "nodemon server/index.js",
+    "dev:ssr": "concurrently \"pnpm build:server:watch\" \"nodemon server/dist/index.js\"",
+    "build:server:watch": "tsc -w --project tsconfig.server.json",
+    "build:server": "tsc --project tsconfig.server.json",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

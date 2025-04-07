@@ -1,8 +1,5 @@
 import axios from "axios";
 export const ClientDirBasePath = "/src";
-/* export const RouteServerMap = {
-  "/": "App.tsx",
-}; */
 
 export const RouteServerMap = {
   "/": () => {
