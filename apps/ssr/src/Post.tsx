@@ -1,7 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
-import { canUseDom } from "./utils/browser";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const getPost = () => {
@@ -20,7 +19,16 @@ function Post({ loadedData }) {
     }
   }, []);
 
-  return <p>postData: {data?.title}</p>;
+  return (
+    <p
+      onClick={() => {
+        console.log("aaa");
+        alert("aa");
+      }}
+    >
+      postData-ss: {data?.title}
+    </p>
+  );
 }
 
 export default Post;

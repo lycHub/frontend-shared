@@ -11,7 +11,8 @@ export function render({
   const { pipe, abort } = renderToPipeableStream(
     <ServerApp loadedData={loadedData} />,
     {
-      bootstrapModules: ["./entry-client.tsx"],
+      // bootstrapScripts: ["/src/entry-client.tsx"],
+      bootstrapModules: ["/src/entry-client.jsx"],
       bootstrapScriptContent: `window.__LOADED_STATE__ = ${JSON.stringify(
         loadedData
       )};`,

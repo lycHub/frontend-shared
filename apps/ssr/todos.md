@@ -1,0 +1,3 @@
+- context
+- auth token
+- router and api route

@@ -29,6 +29,7 @@ async function createViteServer() {
 
   router.get(/(.*)/, async (req, res, next) => {
     const originalUrl = req.originalUrl;
+    console.log("request url>>>", originalUrl);
     /*  const originHtml = readFileSync(
       join(__dirname, "../../index.html"),
       "utf-8"
