@@ -1,17 +1,25 @@
-import { StrictMode } from 'react'
-import { createRoot, hydrateRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+
+const LoadedState = window.__LOADED_STATE__;
 
 const root = document.getElementById("root");
+console.log("ssr>>", import.meta.env.SSR);
 if (root) {
-  if (import.meta.env.VITE_MODE === "ssr") {
-    hydrateRoot(root,  <StrictMode>
-      <App />
-    </StrictMode>);
+  if (import.meta.env.SSR) {
+    hydrateRoot(
+      root,
+      <StrictMode>
+        <App loadedData={LoadedState} />
+      </StrictMode>
+    );
   } else {
-    createRoot(root).render( <StrictMode>
-      <App />
-    </StrictMode>);
+    createRoot(root).render(
+      <StrictMode>
+        <App loadedData={LoadedState} />
+      </StrictMode>
+    );
   }
 }

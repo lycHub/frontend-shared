@@ -1,12 +1,24 @@
-import { StrictMode } from "react";
-import App from "./App";
-import { renderToString } from "react-dom/server";
+import { renderToPipeableStream } from "react-dom/server";
+import ServerApp from "./ServerApp";
 
-export function render() {
-  const appHtml = renderToString(
-    <StrictMode>
-      <App />
-    </StrictMode>
+export function render({
+  originalUrl,
+  loadedData,
+  onShellReady,
+  onShellError,
+  onAllReady,
+}) {
+  const { pipe, abort } = renderToPipeableStream(
+    <ServerApp loadedData={loadedData} />,
+    {
+      bootstrapModules: ["./entry-client.tsx"],
+      bootstrapScriptContent: `window.__LOADED_STATE__ = ${JSON.stringify(
+        loadedData
+      )};`,
+      onShellReady,
+      onShellError,
+      onAllReady,
+    }
   );
-  return { appHtml };
+  return { pipe, abort };
 }
