@@ -3,7 +3,7 @@ import Post from "./Post";
 
 function App({ loadedData }) {
   return (
-    <div>
+    <div className="app" suppressHydrationWarning>
       <h1>Vite + React</h1>
       <Suspense fallback={<p>Loading Comments...</p>}>
         <Post loadedData={loadedData} />
