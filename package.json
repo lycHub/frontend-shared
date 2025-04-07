@@ -10,7 +10,8 @@
     "dev:play": "pnpm -F=@frontend-shared/playground dev",
     "build:ast": "pnpm -F=@frontend-shared/ast build",
     "dev:vanilla": "pnpm -F=@frontend-shared/vanilla-tpl dev",
-    "dev:ssr": "pnpm -F=@frontend-shared/ssr dev:ssr"
+    "dev:ssr": "pnpm -F=@frontend-shared/ssr dev:ssr",
+    "build:server:ssr": "pnpm -F=@frontend-shared/ssr build:server"
   },
   "keywords": [
     "frontend",
