@@ -25,7 +25,7 @@ async function createViteServer() {
     if (module.getServerSideProps) {
       loadedData = await module.getServerSideProps();
     }
-    console.log("request url>>>", originalUrl, loadedData);
+    console.log("request url>>>", originalUrl);
     try {
       const { pipe, abort } = render({
         originalUrl,
