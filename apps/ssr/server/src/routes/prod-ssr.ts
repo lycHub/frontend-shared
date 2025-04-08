@@ -1,10 +1,18 @@
 import express from "express";
 
-// @ts-expect-error okk
-import { render } from "../../../dist/server/entry-server.js";
+// import { render } from "../../../dist/server/entry-server.js";
 import { join, dirname } from "node:path";
 import fse from "fs-extra";
 import { fileURLToPath } from "node:url";
+
+let render = () => {};
+
+const isDev = process.env.NODE_ENV === "development";
+
+if (!isDev) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  render = require("../../../dist/server/entry-server.js").render;
+}
 
 const router = express.Router({ caseSensitive: true });
 
