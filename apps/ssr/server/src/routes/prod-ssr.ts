@@ -36,7 +36,7 @@ async function createViteServer() {
     console.log("request url>>>", originalUrl);
     try {
       const { pipe, abort } = render({
-        originalUrl,
+        req,
         htmlStr,
         loadedData,
         onShellReady() {

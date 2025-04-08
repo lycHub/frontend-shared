@@ -16,10 +16,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-router/dev": "^7.5.0",
     "@tanstack/react-store": "^0.7.0",
     "html-react-parser": "^5.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router": "^7.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

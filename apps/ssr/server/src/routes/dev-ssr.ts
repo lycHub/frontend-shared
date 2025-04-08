@@ -52,19 +52,20 @@ async function createViteServer() {
       const { render } = await vite.ssrLoadModule(
         join(__dirname, "../../../src/entry-server.tsx")
       );
-      const { pipe, abort } = render({
-        originalUrl,
+      // const fetchRequest = createFetchRequest(req, res);
+      const stream = render({
         htmlStr,
         loadedData,
         onShellReady() {
+          res.statusCode = 200;
           res.setHeader("content-type", "text/html");
-          pipe(res);
+          stream.pipe(res);
         },
         onShellError() {
           res.statusCode = 500;
           res.setHeader("content-type", "text/html");
           res.send("<h1>出错了</h1>");
-          abort();
+          stream.abort();
         },
         onAllReady() {
           next();

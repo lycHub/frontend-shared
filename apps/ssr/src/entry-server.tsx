@@ -2,14 +2,13 @@ import { renderToPipeableStream } from "react-dom/server";
 import ServerApp from "./ServerApp";
 
 export function render({
-  originalUrl,
   htmlStr,
   loadedData,
   onShellReady,
   onShellError,
   onAllReady,
 }) {
-  const { pipe, abort } = renderToPipeableStream(
+  return renderToPipeableStream(
     <ServerApp htmlStr={htmlStr} loadedData={loadedData} />,
     {
       // bootstrapModules: ["/src/entry-client.tsx"],
@@ -21,5 +20,4 @@ export function render({
       onAllReady,
     }
   );
-  return { pipe, abort };
 }
