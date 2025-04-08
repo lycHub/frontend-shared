@@ -28,7 +28,7 @@ async function createViteServer() {
       "utf-8"
     );
 
-    const module = await import(`../apis/test.js`);
+    const module = await import(`../route-apis/index.js`);
     let loadedData = null;
     if (module.getServerSideProps) {
       loadedData = await module.getServerSideProps();
@@ -36,7 +36,7 @@ async function createViteServer() {
     console.log("request url>>>", originalUrl);
     try {
       const { pipe, abort } = render({
-        req,
+        originalUrl,
         htmlStr,
         loadedData,
         onShellReady() {

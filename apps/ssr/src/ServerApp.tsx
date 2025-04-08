@@ -2,8 +2,9 @@ import { StrictMode } from "react";
 import parse from "html-react-parser";
 import App from "./App";
 import { preLoadStore } from "./store/preload.store";
+import { StaticRouter } from "react-router";
 
-export default function ServerApp({ htmlStr, loadedData }) {
+export default function ServerApp({ htmlStr, loadedData, originalUrl }) {
   preLoadStore.setState((state) => {
     return {
       ...state,
@@ -17,11 +18,11 @@ export default function ServerApp({ htmlStr, loadedData }) {
       replace(domNode) {
         if (domNode?.data === "ssr-outlet") {
           return (
-            <div id="root">
+            <StaticRouter location={originalUrl}>
               <StrictMode>
                 <App />
               </StrictMode>
-            </div>
+            </StaticRouter>
           );
         }
       },

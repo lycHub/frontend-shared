@@ -3,6 +3,9 @@ import { createServer } from "vite";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import fse from "fs-extra";
+import { match } from "path-to-regexp";
+import { RouteServerMap } from "../route-apis/index.js";
+import { buildMultiPath } from "../utils/path.js";
 
 const router = express.Router({ caseSensitive: true });
 
@@ -29,22 +32,35 @@ async function createViteServer() {
 
   router.get(/(.*)/, async (req, res, next) => {
     const originalUrl = req.originalUrl;
-    console.log("request url>>>", originalUrl);
+    // console.log("request url>>>", originalUrl);
     const originHtml = fse.readFileSync(
       join(__dirname, "../../../index.html"),
       "utf-8"
     );
 
-    /*  const serverAction = RouteServerMap["/"];
-    if (serverAction) {
-      const data = await serverAction();
-      console.log("data :>> ", data);
-    } */
+    let loadedData = {};
 
-    const module = await import(`../apis/test.js`);
-    let loadedData = null;
-    if (module.getServerSideProps) {
-      loadedData = await module.getServerSideProps();
+    const matchRouteInfo = Object.keys(RouteServerMap)
+      .map((item) => {
+        const fn = match(item);
+        const matchInfo = fn(originalUrl);
+        return {
+          apiKey: item,
+          key: matchInfo ? buildMultiPath(matchInfo.path) : item,
+          matchInfo,
+        };
+      })
+      .filter((item) => item.matchInfo)[0];
+
+    console.log("matchRouteKey :>> ", matchRouteInfo.key);
+    if (matchRouteInfo) {
+      const serverAction = RouteServerMap[matchRouteInfo.apiKey];
+      // @ts-expect-error okk
+      req.params.id = matchRouteInfo.matchInfo
+        ? matchRouteInfo.matchInfo.params?.id
+        : "";
+      const data = await serverAction(req);
+      loadedData = { [matchRouteInfo.key]: data };
     }
 
     try {
@@ -54,6 +70,7 @@ async function createViteServer() {
       );
       // const fetchRequest = createFetchRequest(req, res);
       const stream = render({
+        originalUrl,
         htmlStr,
         loadedData,
         onShellReady() {

@@ -1,7 +1,8 @@
 import axios from "axios";
 
+// 创建 axios 实例
 const request = axios.create({
-  baseURL: "https://dogapi.dog/api/v2",
+  baseURL: BASE_API,
 });
 
-export default request;
+export { request };
