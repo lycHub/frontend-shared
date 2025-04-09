@@ -31,6 +31,7 @@ function Breeds() {
 
   return (
     <Suspense fallback={<p>waiting for breeds...</p>}>
+      <title>Breeds</title>
       <BreedList dataPromise={dataPromise} />
     </Suspense>
   );

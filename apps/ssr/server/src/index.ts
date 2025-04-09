@@ -1,7 +1,9 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import { devRouter, prodRouter, apiRouter } from "./routes/index.js";
 const app = express();
 const isDev = process.env.NODE_ENV === "development";
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("dist/client", { index: false }));
 // app.use(express.static("dist/assets", { index: false }));
