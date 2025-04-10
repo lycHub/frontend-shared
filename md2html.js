@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { marked } from "marked";
 
-const basePath = "./docs/将json数据自动生成dts文件";
+const basePath = "./docs/遍历ast/2-手写eslint插件自定义规则";
 const fileName = "readme";
 
 async function logFile() {

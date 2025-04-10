@@ -62,13 +62,15 @@ else console.log("small");
 
 ![](./assets/0-1.png)
 
+![](./assets/0-2.png)
+
 > tips:
 >
 > node: v20+
 >
-> 最终代码在 [main 分支](https://github.com/lycHub/frontend-shared/blob/main/docs/%E5%B0%86json%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90dts%E6%96%87%E4%BB%B6/readme.md)
+> 最终代码在 [main 分支](https://github.com/lycHub/frontend-shared/blob/main/docs/%E9%81%8D%E5%8E%86ast/2-%E6%89%8B%E5%86%99eslint%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A7%84%E5%88%99/readme.md)
 
-## [在线 Demo](https://stackblitz.com/~/github.com/lycHub/frontend-shared?file=docs/%E5%B0%86json%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90dts%E6%96%87%E4%BB%B6/readme.md)
+## [在线 Demo](https://stackblitz.com/~/github.com/lycHub/frontend-shared?file=docs/%E9%81%8D%E5%8E%86ast/2-%E6%89%8B%E5%86%99eslint%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A7%84%E5%88%99/readme.md)
 
 运行 playground demo：
 
