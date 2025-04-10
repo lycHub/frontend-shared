@@ -30,15 +30,10 @@ function Ast() {
   const onClick = () => {
     const num = Math.random();
 
-    if (num > 0.4) {
-      console.log("large");
-    } else if (x > 20) {
-      console.log("aaa");
-    } else if (x < 20) {
-      console.log("bb");
-    } else {
-      console.log("small");
-    }
+    if (num > 0.4) console.log("large");
+    else if (x > 20) console.log("aaa");
+    else if (x < 20) console.log("bb");
+    else console.log("small");
   };
 
   const [data, setData] = useState<Post>();
@@ -56,12 +51,12 @@ function Ast() {
       <div className="box" style={boxStyle()}>
         box
       </div>
-      {data ? (
+      {data && (
         <div className="info">
           <p>title: {data.title}</p>
           <p>body: {data.body}</p>
         </div>
-      ) : null}
+      )}
 
       <button onClick={onClick}>click</button>
 

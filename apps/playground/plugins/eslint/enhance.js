@@ -1,4 +1,4 @@
-export default {
+const plugin = {
   meta: {
     name: "eslint-plugin-enhance",
     version: "0.0.1",
@@ -6,6 +6,7 @@ export default {
       description: "Enhance eslint rules.",
     },
   },
+  configs: {},
   rules: {
     "force-conditions-within-block": {
       meta: {
@@ -32,7 +33,7 @@ export default {
         docs: {
           description: "Not allow && statements within jsx element.",
         },
-        fixable: "code",
+        // fixable: "code",
         hasSuggestions: true,
         messages: {
           noAndChainWithinJsx: "Not allow && statements within jsx element.",
@@ -107,3 +108,19 @@ function loopIfStatement(rootNode, context) {
   };
   loop(rootNode);
 }
+
+Object.assign(plugin.configs, {
+  recommended: [
+    {
+      plugins: {
+        enhance: plugin,
+      },
+      rules: {
+        "enhance/force-conditions-within-block": "error",
+        "enhance/no-and-chain-within-jsx": "error",
+      },
+    },
+  ],
+});
+
+export default plugin;

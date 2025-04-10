@@ -6,16 +6,9 @@ import tseslint from "typescript-eslint";
 import enhance from "./plugins/eslint/enhance.js";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
   {
     files: ["src/**/*.{ts,tsx}"],
-    plugins: {
-      enhance,
-    },
-    rules: {
-      "enhance/force-conditions-within-block": "error",
-      "enhance/no-and-chain-within-jsx": "error",
-    },
+    extends: [enhance.configs.recommended],
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
