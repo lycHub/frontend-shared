@@ -1,0 +1,36 @@
+#app .icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+#app .icons .icon-item {
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
+  color: #32373e;
+  border: 1px solid #dce3e9;
+  p {
+    margin: 0;
+  }
+}
+
+#app .icons .icon-item:hover {
+  color: #0072ef;
+  border-color: #5db3ff;
+}
+
+[popover="hint"] {
+  inset: unset;
+  position: absolute;
+  bottom: calc(anchor(top) + 4px);
+  justify-self: anchor-center;
+  margin: 0;
+
+  padding: 8px;
+  border-radius: 6px;
+  background: #271717;
+  color: whitesmoke;
+  box-shadow: 1px 1px 3px #999;
+  border: none;
+}

@@ -44,6 +44,10 @@ importers:
         version: 6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.85.1)(yaml@2.7.0)
 
   apps/icons:
+    dependencies:
+      iconify-icon:
+        specifier: ^2.3.0
+        version: 2.3.0
     devDependencies:
       '@iconify/tools':
         specifier: ^4.1.1
@@ -57,6 +61,9 @@ importers:
       concurrently:
         specifier: ^9.1.2
         version: 9.1.2
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.85.1)(yaml@2.7.0)
 
   apps/libs:
     dependencies:

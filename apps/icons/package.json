@@ -7,7 +7,8 @@
     "dev": "node watch",
     "build": "concurrently \"pnpm gen:data\" \"pnpm gen:css\"",
     "gen:data": "node gen-data",
-    "gen:css": "node gen-css"
+    "gen:css": "node gen-css",
+    "preview": "vite"
   },
   "exports": {
     "./*": "./*"
@@ -22,6 +23,10 @@
     "@iconify/tools": "^4.1.1",
     "@iconify/utils": "^2.3.0",
     "chokidar": "^4.0.3",
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "iconify-icon": "^2.3.0"
   }
 }
