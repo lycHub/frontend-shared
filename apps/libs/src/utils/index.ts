@@ -9,3 +9,4 @@ export * from "./wx";
 export * from "./bool";
 export * from "./array";
 export * from "./logger";
+export * from "./error";

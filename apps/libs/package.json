@@ -17,6 +17,7 @@
   "license": "ISC",
   "peerDependencies": {
     "consola": "^3.4.0",
-    "react": "^19.0.0"
+    "react": "^19.0.0",
+    "vite": "^6.2.0"
   }
 }
