@@ -1,15 +1,12 @@
 import "./index.css";
-import { PropsWithChildren } from "react";
-import { NativeProps } from "antd-mobile/es/utils/native-props";
+import { HTMLAttributes, PropsWithChildren } from "react";
 
 function MaskBg({
   className,
   children,
-}: PropsWithChildren<Record<string, any> & NativeProps>) {
+}: PropsWithChildren<Record<string, any> & HTMLAttributes<HTMLDivElement>>) {
   return (
-    <div className={`mask-bg ${className}`}>
-      {children || 'Loading...'}
-    </div>
+    <div className={`mask-bg ${className}`}>{children || "Loading..."}</div>
   );
 }
 

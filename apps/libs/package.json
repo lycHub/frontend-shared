@@ -16,9 +16,7 @@
   "author": "ysx",
   "license": "ISC",
   "peerDependencies": {
-    "antd": "^5.22.1",
-    "antd-mobile": "^5.38.1",
-    "dayjs": "^1.11.13",
+    "consola": "^3.4.0",
     "react": "^19.0.0"
   }
 }
