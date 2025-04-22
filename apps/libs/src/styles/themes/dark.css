@@ -1,4 +1,5 @@
-/* https://designsystem.zeiss.com/d/V6diyrWaeh1V/foundations#/color/color-palette */
+/* https://beyond.zeiss.com/document/8#/color/color-palette-dark-theme */
+
 :root[data-prefers-color-scheme="dark"] {
   --zs-grey-1: #fff;
   --zs-grey-2: #f8fafc;

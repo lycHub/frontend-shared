@@ -1,23 +1,10 @@
-import { logger } from "@frontend-shared/libs";
 import "./style.scss";
 import { Icon } from "@iconify-icon/react";
-import { useEffect } from "react";
-
-logger.info("Play");
 
 function Play() {
-  useEffect(() => {
-    logger.log("Play 2");
-    logger.ready("Play 2");
-    logger.start("Play 2");
-    logger.box("Play 2");
-    logger.success("Play 2");
-    logger.fail("Play 2");
-  }, []);
-
   return (
     <div className="play-page">
-      <h3 onClick={() => logger.log("Play 3")}>Play here</h3>
+      <h3>Play here</h3>
       <Icon icon="ri:armchair-fill" />
       <Icon icon="ri:armchair-fill" style={{ color: "#e00" }} />
       <Icon
