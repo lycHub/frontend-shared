@@ -1,35 +1,37 @@
-interface Options {
-  code: number;
-}
+import { isPlainObject } from "lodash-es";
 
-const ERROR_CODES = {
-  UNKNOWN: -1,
-  NETWORK: -100,
-  VALIDATION: -200,
+const DefaultErrorConfig = {
+  UNKNOWN: {
+    code: "unknown",
+    type: "UnknownError",
+    message: "An unknown error occurred",
+    error: null,
+    stack: null,
+  },
 };
 
-export function formatError(error: Error, options?: Partial<Options>) {
-  const baseError = {
-    code: options?.code ?? ERROR_CODES.UNKNOWN,
-    message: "An unknown error occurred",
-    type: "UnknownError",
-    stack: null,
-    error: null,
-    context: null,
+export function formatError(error: any) {
+  const finalError = {
+    ...DefaultErrorConfig.UNKNOWN,
+    error,
   };
 
-  if (!(error instanceof Error)) {
-    return { ...baseError, error };
+  if (isPlainObject(error)) {
+    const code = error.code ?? error.status;
+    if (code) {
+      finalError.code = code;
+    }
+    const message = error.message ?? error.msg;
+    if (message) {
+      finalError.message = message;
+    }
+    if (error.type) {
+      finalError.type = error.type;
+    }
+    if (error.stack) {
+      finalError.stack = error.stack;
+    }
   }
 
-  const result = {
-    ...baseError,
-    code: options?.code,
-    message: error.message,
-    error: error,
-    type: error.name || "Error",
-    stack: error.stack,
-  };
-
-  return result;
+  return finalError;
 }

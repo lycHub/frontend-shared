@@ -22,9 +22,11 @@
     "@faker-js/faker": "^9.5.0",
     "axios": "^1.8.4",
     "consola": "^3.4.0",
+    "lodash-es": "^4.17.21",
     "sass": "^1.85.1"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "marked": "^15.0.7"
   }
 }
