@@ -6,7 +6,7 @@ const searchLevel = searchParams.get("level");
 
 function processLevel(value: TypeWithNull<string>) {
   const res = +(value || "");
-  const defaultLevel = import.meta.env.PROD ? LogLevels.silent : LogLevels.info;
+  const defaultLevel = import.meta.env.PROD ? LogLevels.warn : LogLevels.debug;
   return Number.isNaN(res) || res <= 0 ? defaultLevel : res;
 }
 

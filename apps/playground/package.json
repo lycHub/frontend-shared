@@ -7,18 +7,23 @@
     "dev": "tsc && vite",
     "build": "vite build",
     "lint:es": "eslint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n:extract": "node extract-i18n",
+    "i18n:gen": "node gen-i18n"
   },
   "dependencies": {
     "@frontend-shared/icons": "workspace:^",
     "@frontend-shared/libs": "workspace:^",
     "@iconify-icon/react": "^2.3.0",
     "@iconify/tools": "^4.1.1",
+    "destr": "^2.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.2.0"
+    "react-router": "^7.2.0",
+    "uid": "^2.0.2"
   },
   "devDependencies": {
+    "@ast-grep/napi": "^0.39.2",
     "@eslint/js": "^9.21.0",
     "@types/fs-extra": "^11.0.4",
     "@types/react": "^19.0.10",
@@ -28,6 +33,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "fs-extra": "^11.3.0",
+    "glob": "^11.0.3",
     "globals": "^15.15.0",
     "quicktype-core": "^23.0.171",
     "typescript": "~5.7.2",
