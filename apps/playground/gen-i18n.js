@@ -1,12 +1,12 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { parse, Lang } from "@ast-grep/napi";
-import { glob, globSync, globStream, globStreamSync, Glob } from "glob";
-import { getDirname, textToObject, writeToJsonFile } from "./i18n/util.js";
-import { compact, uniq } from "lodash-es";
+import { getDirname, writeToJsonFile } from "./i18n/util.js";
 import { destr } from "destr";
+import { batchTranslateText } from "./i18n/translate";
 
 const basePath = getDirname(import.meta.url);
+
+let allJson = [];
 
 async function readFileContent(filePath) {
   try {
@@ -21,28 +21,51 @@ async function readFileContent(filePath) {
 
 const Langs = ["zh", "en"];
 
-async function makeLangJson({ extractJson, lang, targetLang }) {
-  const jsonText = extractJson.reduce((res, item) => {
-    res[item.text] = item.text;
-    return res;
-  }, {});
-  // console.log("makeLangJson>>", lang, json);
+async function makeLangJson({ extractJson, lang, mainLang }) {
+  let jsonText = {};
+  if (mainLang === lang) {
+    jsonText = extractJson.reduce((res, item) => {
+      res[item.text] = item.text;
+      return res;
+    }, {});
+  } else {
+    const textList = extractJson.map((item) => item.text);
+    const { TargetTextList } = await batchTranslateText({
+      Source: "zh",
+      Target: "en",
+      SourceTextList: textList,
+    });
+    if (TargetTextList?.length) {
+      jsonText = extractJson.reduce((res, item, index) => {
+        res[item.text] = TargetTextList[index] || item.text;
+        return res;
+      }, {});
+    }
+  }
+
+  // console.log("makeLangJson>>", lang, jsonText);
   await writeToJsonFile(jsonText, join(basePath, `src/i18n/${lang}.json`));
+  console.log("gen i18n success");
 }
 
 async function genLocalJson({ langs, mainLang }) {
-  const extractJson = await readFileContent(
-    join(basePath, "i18n/extract.json")
-  );
+  let extractJson = [];
+  if (allJson.length) {
+    extractJson = allJson.slice();
+  } else {
+    extractJson = await readFileContent(join(basePath, "i18n/extract.json"));
+    allJson = extractJson.slice();
+  }
+
   langs.forEach((lang) => {
     makeLangJson({
       lang,
       extractJson,
+      mainLang,
     });
   });
 }
 
-// readFileContent(join(basePath, "i18n/extract.json"));
 genLocalJson({
   langs: Langs,
   mainLang: Langs[0],

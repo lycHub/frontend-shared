@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parse, Lang } from "@ast-grep/napi";
-import { glob, globSync, globStream, globStreamSync, Glob } from "glob";
+import { glob } from "glob";
 import { getDirname, textToObject, writeToJsonFile } from "./i18n/util.js";
 import { compact, uniq } from "lodash-es";
 
