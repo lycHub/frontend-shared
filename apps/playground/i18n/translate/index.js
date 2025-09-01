@@ -3,10 +3,6 @@ import tencentcloud from "tencentcloud-sdk-nodejs-tmt";
 const TmtClient = tencentcloud.tmt.v20180321.Client;
 
 const clientConfig = {
-  credential: {
-    secretId: "",
-    secretKey: "",
-  },
   region: "ap-shanghai",
   profile: {
     httpProfile: {
