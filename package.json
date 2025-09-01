@@ -31,7 +31,9 @@
     "sass": "^1.85.1"
   },
   "devDependencies": {
+    "@snipaste-cli/i18n": "^0.0.1",
     "@types/lodash-es": "^4.17.12",
+    "ahooks": "^3.9.5",
     "marked": "^15.0.7",
     "tencentcloud-sdk-nodejs-tmt": "^4.1.74"
   }

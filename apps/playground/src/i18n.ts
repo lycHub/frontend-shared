@@ -7,8 +7,8 @@ import {
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import MyEnJson from "./i18n/en.json";
-import MyZhJson from "./i18n/zh.json";
+import MyEnJson from "./locales/en.json";
+import MyZhJson from "./locales/zh.json";
 
 const i18nInitPromise = i18next
   .use(initReactI18next)
