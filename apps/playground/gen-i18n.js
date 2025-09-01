@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getDirname, writeToJsonFile } from "./i18n/util.js";
 import { destr } from "destr";
-import { batchTranslateText } from "./i18n/translate";
+import { batchTranslateText } from "./i18n/translate/index.js";
 
 const basePath = getDirname(import.meta.url);
 

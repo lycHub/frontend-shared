@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
-import { writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { uid } from "uid";
+import { outputFileSync } from "fs-extra/esm";
 
 export function getDirname(importMetaUrl) {
   return dirname(fileURLToPath(importMetaUrl));
@@ -19,5 +19,5 @@ export function writeToJsonFile(contentStr, filePath) {
     typeof contentStr === "string"
       ? contentStr
       : JSON.stringify(contentStr, null, 2);
-  return writeFile(filePath, jsonContent, "utf-8");
+  return outputFileSync(filePath, jsonContent);
 }
