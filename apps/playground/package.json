@@ -7,9 +7,7 @@
     "dev": "tsc && vite",
     "build": "vite build",
     "lint:es": "eslint",
-    "preview": "vite preview",
-    "i18n:extract": "node extract-i18n",
-    "i18n:gen": "node gen-i18n"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@frontend-shared/icons": "workspace:^",
