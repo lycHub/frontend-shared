@@ -80,7 +80,7 @@ export default (options?: Partial<Options>): PluginOption => {
 };
 
 async function genType(data: Record<string, unknown>) {
-  const jsonInput = jsonInputForTargetLanguage("TypeScript");
+  const jsonInput = jsonInputForTargetLanguage("typescript");
 
   await jsonInput.addSource({
     name: "dts",
@@ -92,7 +92,7 @@ async function genType(data: Record<string, unknown>) {
 
   const { lines } = await quicktype({
     inputData,
-    lang: "TypeScript",
+    lang: "typescript",
     rendererOptions: {
       "just-types": "true",
     },
