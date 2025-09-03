@@ -13,8 +13,9 @@ function Play() {
         <p>{t("中文")}</p>
       </div>
 
+      <Icon icon="ri:angularjs-fill" style={{ color: 'orange', fontSize: '3em' }} />
       <hr />
-
+      <Icon icon="zs:search" style={{ color: 'orange', fontSize: '3em' }} />
     </div>
   );
 }
