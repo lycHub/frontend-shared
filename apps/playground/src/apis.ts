@@ -8,6 +8,6 @@ export interface Post {
   fn?: () => void;
 }
 
-export function postDetail(id: number) {
-  return axios.get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`);
+export function getBreeds() {
+  return axios.get<Post>("https://dogapi.dog/api/v2/breeds");
 }

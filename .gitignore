@@ -12,7 +12,6 @@ dist
 dist-ssr
 dist-demo
 *.local
-quick-dts
 
 # Editor directories and files
 .vscode/*

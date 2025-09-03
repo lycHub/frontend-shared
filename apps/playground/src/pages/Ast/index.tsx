@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Post, postDetail } from "../../apis";
+import { Post, getBreeds } from "../../apis";
 import "./style.scss";
 
 const width = "100px";
@@ -34,7 +34,7 @@ function Ast() {
   const [data, setData] = useState<Post>();
 
   useEffect(() => {
-    postDetail(1).then(({ data }) => {
+    getBreeds().then(({ data }) => {
       console.log("data", data);
       setData(data);
     });
