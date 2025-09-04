@@ -18,7 +18,7 @@ const i18nInitPromise = i18next
     debug: import.meta.env.DEV,
     detection: {
       order: ["localStorage", "htmlTag"],
-      查看upLocalStorage: StorageKeyPrefix + "i18nextLng",
+      lookupLocalStorage: StorageKeyPrefix + "i18nextLng",
     },
     supportedLngs: [LANGS.en, LANGS.zh],
     resources: {
