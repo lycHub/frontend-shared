@@ -6,7 +6,7 @@ function AppHeader() {
   return (
     <header className="app-header">
       <div className="lang">
-        lang: {state}
+        curr lang: {state}
         <button onClick={toggle}>toggle lang</button>
       </div>
       <nav className="h-full">

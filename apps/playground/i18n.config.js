@@ -1,6 +1,6 @@
 export default {
-  extractTarget: "src/**/*.{ts,tsx}",
-  extractDest: "i18n/resource.json",
+  // extractTarget: "src/**/*.{ts,tsx}",
+  // extractDest: "i18n/resource.json",
   // langs: Langs,   默认：["zh", "en"]
   // mainLang: Langs[0],
 
