@@ -1,10 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import reactScopedCss from "vite-plugin-react-scope-css";
 import resToDts from "./plugins/res2dts.ts";
 
 export default defineConfig({
   plugins: [
-    resToDts(),
+    reactScopedCss(),
     react({
       babel: {
         plugins: [
@@ -18,5 +19,6 @@ export default defineConfig({
         ],
       },
     }),
+    resToDts(),
   ],
 });

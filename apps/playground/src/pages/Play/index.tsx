@@ -1,5 +1,5 @@
 import { useExtendTranslation } from "../../hooks/use-extend-translation";
-import "./style.scss";
+import "./style.scoped.scss";
 import { Icon } from "@iconify-icon/react";
 
 function Play() {

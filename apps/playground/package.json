@@ -39,6 +39,7 @@
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",
+    "vite-plugin-react-scope-css": "^1.0.5",
     "vite-plugin-res-to-dts": "^1.0.6"
   }
 }
